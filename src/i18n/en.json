@@ -1,0 +1,23 @@
+{
+    "app_name"                : "BrewMyMac",
+    "app_description"         : "The coolest way to install apps and customize your Mac",
+    "hint_search"             : "Search…",
+    "error"                   : "Something went wrong:",
+    "label_start_searching"   : "Type in the search field to start searching for macOS apps and tweaks",
+    "label_no_results"        : "No results found for your search",
+    "label_author"            : "By {{author}}",
+    "label_parameter"         : "Value",
+    "label_session"           : "Your apps and tweaks",
+    "label_show_selected"     : "Show selected",
+    "label_selected"          : "Here's everything you have selected:",
+    "label_instruction"       : "Copy and paste the command below in your Terminal",
+    "label_copy"              : "Command copied to clipboard",
+    "label_about_title"       : "About BrewMyMac",
+    "label_about_description" : "BrewMyMac is possibly the coolest way to install apps and customize your Mac. You can choose from a wide range of apps and tweaks, and then install them with a single click. This is a much better way than going to each app's website separately and starting all the downloads manually.\n\nBrewMyMac is a free service, and it's an open-source, hobby project made over a weekend by Alan Tai.",
+    "url_linkedin"            : "https://www.linkedin.com/in/ayltai/",
+    "action_learn_more"       : "Learn more",
+    "action_customize"        : "Customize",
+    "action_close"            : "Close",
+    "action_follow"           : "Follow Alan Tai on LinkedIn",
+    "action_try_again"        : "Try again"
+}

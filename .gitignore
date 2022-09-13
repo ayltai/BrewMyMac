@@ -1,0 +1,20 @@
+# macOS
+.DS_Store
+
+# JetBrains
+.idea/
+*.iml
+
+# Dependencies
+node_modules/
+
+# Testing
+coverage/
+
+# Secrets
+.env
+
+# Generated
+build/
+dist/
+*.log

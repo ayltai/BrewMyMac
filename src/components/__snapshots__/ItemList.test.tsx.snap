@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ItemList /> renders correctly 1`] = `
+<DocumentFragment>
+  <ul
+    class="MuiList-root MuiList-padding MuiList-dense MuiList-subheader css-mkvtkb-MuiList-root"
+  >
+    <li />
+    <li>
+      <ul>
+        <li
+          class="MuiListSubheader-root MuiListSubheader-gutters MuiListSubheader-sticky css-uob957-MuiListSubheader-root"
+        >
+          Tweak
+        </li>
+        <li
+          class="MuiListItem-root MuiListItem-dense MuiListItem-gutters MuiListItem-padding css-1vnt5zy-MuiListItem-root"
+        >
+          <div
+            class="MuiListItemText-root MuiListItemText-dense css-tlelie-MuiListItemText-root"
+          >
+            <span
+              class="MuiTypography-root MuiTypography-body2 MuiListItemText-primary css-et1ao3-MuiTypography-root"
+            >
+              dummy_name
+            </span>
+          </div>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</DocumentFragment>
+`;
