@@ -1,5 +1,5 @@
 import { ContentCopy, } from '@mui/icons-material';
-import { IconButton, InputAdornment, OutlinedInput, Snackbar, styled, } from '@mui/material';
+import { IconButton, InputAdornment, OutlinedInput, Snackbar, styled, Tooltip, } from '@mui/material';
 import React, { useState, } from 'react';
 import { useTranslation, } from 'react-i18next';
 
@@ -33,11 +33,13 @@ export const CopyableTextField = ({
                 value={value}
                 endAdornment={
                     <InputAdornment position='end'>
-                        <IconButton
-                            edge='end'
-                            onClick={handleCopy}>
-                            <ContentCopy />
-                        </IconButton>
+                        <Tooltip title={t('action_copy')}>
+                            <IconButton
+                                edge='end'
+                                onClick={handleCopy}>
+                                <ContentCopy />
+                            </IconButton>
+                        </Tooltip>
                     </InputAdornment>
                 } />
             <Snackbar

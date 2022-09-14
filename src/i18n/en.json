@@ -10,6 +10,8 @@
     "label_session"           : "Your apps and tweaks",
     "label_show_selected"     : "Show selected",
     "label_selected"          : "Here's everything you have selected:",
+    "label_app_store"         : "You need to sign in to the App Store to install the apps you have selected",
+    "label_tweaks"            : "You need to disable System Integrity Protection (SIP) to apply the tweaks you have selected",
     "label_instruction"       : "Copy and paste the command below in your Terminal",
     "label_copy"              : "Command copied to clipboard",
     "label_about_title"       : "About BrewMyMac",
@@ -19,5 +21,8 @@
     "action_customize"        : "Customize",
     "action_close"            : "Close",
     "action_follow"           : "Follow Alan Tai on LinkedIn",
-    "action_try_again"        : "Try again"
+    "action_try_again"        : "Try again",
+    "action_copy"             : "Copy",
+    "action_about"            : "About BrewMyMac",
+    "action_install"          : "Get installation instructions"
 }

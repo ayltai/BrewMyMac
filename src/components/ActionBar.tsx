@@ -1,10 +1,14 @@
 import { GitHub, InfoOutlined, LinkedIn, } from '@mui/icons-material';
-import { AppBar, Box, IconButton, Grid, Link, styled, Toolbar, } from '@mui/material';
+import { AppBar, Box, IconButton, Grid, Link, styled, Toolbar, Tooltip, } from '@mui/material';
 import { useGA4React, } from 'ga-4-react';
 import React, { useState, } from 'react';
 import { useTranslation, } from 'react-i18next';
 
 import { About, } from '../screens';
+
+const ClickableImage = styled('img')`
+    cursor : pointer;
+`;
 
 const PaddedIconButton = styled(IconButton)(({ theme, }) => ({
     marginLeft : theme.spacing(1),
@@ -24,6 +28,8 @@ export const ActionBar = ({
     const { t, } = useTranslation();
 
     const [ open, setOpen, ] = useState(false);
+
+    const handleHomepageClick = () => window.open('/', '_self');
 
     const handleGitHubClick = () => {
         if (ga) ga.event('Click', 'GitHub', 'Referral');
@@ -54,11 +60,19 @@ export const ActionBar = ({
                             flexDirection='row'
                             xs={3}
                             alignItems='center'>
+                            <ClickableImage
+                                width={48}
+                                height={48}
+                                src={require('../LogoSmall.png')}
+                                onClick={handleHomepageClick} />
                             <Link
+                                marginLeft={2}
                                 color='inherit'
                                 underline='none'
                                 href='/'
-                                variant='h5'>
+                                fontFamily='Inconsolata'
+                                fontWeight={600}
+                                variant='h4'>
                                 {title}
                             </Link>
                             <PaddedIconButton onClick={handleGitHubClick}>
@@ -67,9 +81,11 @@ export const ActionBar = ({
                             <PaddedIconButton onClick={handleLinkedInClick}>
                                 <LinkedIn />
                             </PaddedIconButton>
-                            <PaddedIconButton onClick={handleAboutClick}>
-                                <InfoOutlined />
-                            </PaddedIconButton>
+                            <Tooltip title={t('action_about')}>
+                                <PaddedIconButton onClick={handleAboutClick}>
+                                    <InfoOutlined />
+                                </PaddedIconButton>
+                            </Tooltip>
                         </Grid>
                         <Grid
                             item

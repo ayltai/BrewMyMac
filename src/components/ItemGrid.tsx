@@ -20,9 +20,7 @@ export const ItemGrid = ({
                 item
                 xs={6}
                 sm={4}
-                md={4}
-                lg={3}
-                xl={2}>
+                lg={3}>
                 <SelectableItem item={item} />
             </Grid>
         ))}

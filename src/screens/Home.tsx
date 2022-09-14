@@ -1,5 +1,5 @@
 import { InstallDesktop, } from '@mui/icons-material';
-import { Badge, Box, Grid, IconButton, styled, ToggleButton, } from '@mui/material';
+import { Badge, Box, Grid, IconButton, styled, ToggleButton, Tooltip, } from '@mui/material';
 import { render, } from 'ejs';
 import { useGA4React, } from 'ga-4-react';
 import React, { useEffect, useState, } from 'react';
@@ -91,18 +91,20 @@ export const Home = () => {
                 }
                 rightComponent={
                     <>
-                        <RightAlignedIconButton
-                            disabled={session.items.length === 0}
-                            onClick={handleInstall}>
-                            {session.items.length > 0 && (
-                                <Badge
-                                    color='primary'
-                                    badgeContent={session.items.length}>
-                                    <InstallDesktop />
-                                </Badge>
-                            )}
-                            {session.items.length === 0 && <InstallDesktop />}
-                        </RightAlignedIconButton>
+                        <Tooltip title={t('action_install')}>
+                            <RightAlignedIconButton
+                                disabled={session.items.length === 0}
+                                onClick={handleInstall}>
+                                {session.items.length > 0 && (
+                                    <Badge
+                                        color='primary'
+                                        badgeContent={session.items.length}>
+                                        <InstallDesktop />
+                                    </Badge>
+                                )}
+                                {session.items.length === 0 && <InstallDesktop />}
+                            </RightAlignedIconButton>
+                        </Tooltip>
                         <RightAlignedToggleButton
                             size='small'
                             color='primary'

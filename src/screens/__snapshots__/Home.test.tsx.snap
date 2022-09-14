@@ -17,8 +17,14 @@ exports[`<Home /> renders correctly 1`] = `
           <div
             class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-3 css-1l0k3fu-MuiGrid-root"
           >
+            <img
+              class="css-rcclqv"
+              height="48"
+              src="[object Object]"
+              width="48"
+            />
             <a
-              class="MuiTypography-root MuiTypography-h5 MuiLink-root MuiLink-underlineNone css-1gcsvp5-MuiTypography-root-MuiLink-root"
+              class="MuiTypography-root MuiTypography-h4 MuiLink-root MuiLink-underlineNone css-u3425n-MuiTypography-root-MuiLink-root"
               href="/"
             >
               app_name
@@ -64,7 +70,9 @@ exports[`<Home /> renders correctly 1`] = `
               />
             </button>
             <button
-              class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-11b5pux-MuiButtonBase-root-MuiIconButton-root"
+              aria-label="action_about"
+              class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium  css-11b5pux-MuiButtonBase-root-MuiIconButton-root"
+              data-mui-internal-clone-element="true"
               tabindex="0"
               type="button"
             >
@@ -131,7 +139,9 @@ exports[`<Home /> renders correctly 1`] = `
             class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-3 css-kivoit-MuiGrid-root"
           >
             <button
-              class="MuiButtonBase-root Mui-disabled MuiIconButton-root Mui-disabled MuiIconButton-sizeMedium css-1v9e55o-MuiButtonBase-root-MuiIconButton-root"
+              aria-label="action_install"
+              class="MuiButtonBase-root Mui-disabled MuiIconButton-root Mui-disabled MuiIconButton-sizeMedium  css-1v9e55o-MuiButtonBase-root-MuiIconButton-root"
+              data-mui-internal-clone-element="true"
               disabled=""
               tabindex="-1"
               type="button"

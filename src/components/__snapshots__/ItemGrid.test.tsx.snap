@@ -6,7 +6,7 @@ exports[`<ItemGrid /> renders correctly 1`] = `
     class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2 css-1ebqi03-MuiGrid-root"
   >
     <div
-      class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6 MuiGrid-grid-sm-4 MuiGrid-grid-md-4 MuiGrid-grid-lg-3 MuiGrid-grid-xl-2 css-s1wxif-MuiGrid-root"
+      class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6 MuiGrid-grid-sm-4 MuiGrid-grid-lg-3 css-16cooyn-MuiGrid-root"
     >
       <div
         class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-7f9rp6-MuiPaper-root-MuiCard-root"
@@ -29,7 +29,7 @@ exports[`<ItemGrid /> renders correctly 1`] = `
               class="MuiBox-root css-15p9n5u"
             />
             <p
-              class="MuiTypography-root MuiTypography-body2 css-1pfbavt-MuiTypography-root"
+              class="MuiTypography-root MuiTypography-body2 css-l1juks-MuiTypography-root"
             />
             <div
               class="MuiChip-root MuiChip-filled MuiChip-sizeSmall MuiChip-colorDefault MuiChip-filledDefault css-10rs1bw-MuiChip-root"

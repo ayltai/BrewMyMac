@@ -93,7 +93,7 @@ export const SelectableItem = ({
                             )}
                         </Box>
                         <TruncatedTypography
-                            height={44}
+                            height={43}
                             color='text.secondary'
                             variant='body2'>
                             {(selectedItem || item).description}

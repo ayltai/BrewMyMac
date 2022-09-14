@@ -6,6 +6,7 @@ import { useTranslation, } from 'react-i18next';
 import { Provider, } from 'react-redux';
 import { PersistGate, } from 'redux-persist/integration/react';
 import { useMediaQuery, } from 'usehooks-ts';
+import '@fontsource/inconsolata/600.css';
 import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
