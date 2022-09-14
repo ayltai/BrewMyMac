@@ -34,7 +34,7 @@ export const SelectableItem = ({
 } : {
     item : Item,
 }) => {
-    const ga       = useGA4React();
+    const ga       = useGA4React(process.env.REACT_APP_GA_TAG);
     const dispatch = useAppDispatch();
     const session  = useAppSelector(state => state.session);
 

@@ -23,7 +23,7 @@ export const ActionBar = ({
     centerComponent? : React.ReactNode,
     rightComponent?  : React.ReactNode,
 }) => {
-    const ga = useGA4React();
+    const ga = useGA4React(process.env.REACT_APP_GA_TAG);
 
     const { t, } = useTranslation();
 

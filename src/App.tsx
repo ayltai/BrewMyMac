@@ -54,7 +54,7 @@ const AppRoot = () => {
     const handleReset = () => dispatch(reset());
 
     useEffect(() => {
-        if (ga) ga.initialize().catch(handleError);
+        if (ga && !GA4React.isInitialized()) ga.initialize().catch(handleError);
     }, []);
 
     return (

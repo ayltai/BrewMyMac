@@ -15,7 +15,7 @@ export const ItemDetail = ({
     onClose?  : () => void,
     onChange? : (value? : string) => void,
 }) => {
-    const ga = useGA4React();
+    const ga = useGA4React(process.env.REACT_APP_GA_TAG);
 
     const { t, } = useTranslation();
 

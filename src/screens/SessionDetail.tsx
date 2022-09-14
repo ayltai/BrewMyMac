@@ -16,7 +16,7 @@ export const SessionDetail = ({
     items    : Item[],
     onClose? : () => void,
 }) => {
-    const ga = useGA4React();
+    const ga = useGA4React(process.env.REACT_APP_GA_TAG);
 
     const { t, } = useTranslation();
 

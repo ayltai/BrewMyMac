@@ -1,7 +1,7 @@
 {
     "name"            : "brew-my-mac",
     "description"     : "Possibly the coolest way to install apps and customize your Mac!",
-    "version"         : "1.0.3",
+    "version"         : "1.0.4",
     "author"          : {
         "name" : "Alan Tai"
     },

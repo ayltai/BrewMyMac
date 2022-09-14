@@ -29,7 +29,7 @@ const RightAlignedIconButton = styled(IconButton)(({ theme, }) => ({
 }));
 
 export const Home = () => {
-    const ga      = useGA4React();
+    const ga      = useGA4React(process.env.REACT_APP_GA_TAG);
     const session = useAppSelector(state => state.session);
 
     const [ filter,            setFilter,            ] = useState<string>('');
