@@ -7,9 +7,9 @@ import { useDebounce, } from 'usehooks-ts';
 const Search = styled('div')(({ theme,}) => ({
     position                          : 'relative',
     borderRadius                      : theme.shape.borderRadius,
-    backgroundColor                   : alpha(theme.palette.common.white, 0.15),
+    backgroundColor                   : alpha(theme.palette.mode === 'dark' ? theme.palette.common.white : theme.palette.common.black, 0.15),
     '&:hover'                         : {
-        backgroundColor : alpha(theme.palette.common.white, 0.25),
+        backgroundColor : alpha(theme.palette.mode === 'dark' ? theme.palette.common.white : theme.palette.common.black, 0.25),
     },
     width                             : '100%',
     [theme.breakpoints.up('sm')] : {

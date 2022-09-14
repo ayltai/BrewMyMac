@@ -93,7 +93,7 @@ exports[`<Home /> renders correctly 1`] = `
             </button>
           </div>
           <div
-            class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6 css-1dsnw5r-MuiGrid-root"
+            class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6 css-1hhkil3-MuiGrid-root"
           >
             <div
               class="MuiBox-root css-1xhj18k"
@@ -102,7 +102,7 @@ exports[`<Home /> renders correctly 1`] = `
                 class="MuiBox-root css-i9gxme"
               />
               <div
-                class="css-9vvsnn"
+                class="css-60pshj"
               >
                 <div
                   class="css-1iz4iln"
@@ -136,7 +136,7 @@ exports[`<Home /> renders correctly 1`] = `
             </div>
           </div>
           <div
-            class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-3 css-kivoit-MuiGrid-root"
+            class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-3 css-aizbhi-MuiGrid-root"
           >
             <span
               aria-label="action_install"

@@ -92,6 +92,7 @@ export const ActionBar = ({
                         <Grid
                             item
                             xs={6}
+                            alignItems='center'
                             justifyContent='center'>
                             <Box
                                 display='flex'
@@ -104,6 +105,7 @@ export const ActionBar = ({
                         <Grid
                             item
                             xs={3}
+                            alignItems='center'
                             justifyContent='flex-end'>
                             {rightComponent}
                         </Grid>

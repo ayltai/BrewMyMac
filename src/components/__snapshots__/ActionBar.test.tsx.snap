@@ -88,7 +88,7 @@ exports[`<ActionBar /> renders correctly 1`] = `
           </button>
         </div>
         <div
-          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6 css-1dsnw5r-MuiGrid-root"
+          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6 css-1hhkil3-MuiGrid-root"
         >
           <div
             class="MuiBox-root css-1xhj18k"
@@ -102,7 +102,7 @@ exports[`<ActionBar /> renders correctly 1`] = `
           </div>
         </div>
         <div
-          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-3 css-kivoit-MuiGrid-root"
+          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-3 css-aizbhi-MuiGrid-root"
         />
       </div>
     </div>
