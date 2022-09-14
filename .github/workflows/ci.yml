@@ -1,0 +1,70 @@
+name: CI
+on:
+  - push
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Cache dependencies
+        id: cache-dependencies
+        uses: actions/cache@v3
+        with:
+          key: ${{ runner.os }}-${{ hashFiles('**/package.json') }}
+          path: |
+            node_modules
+            ~/.npm
+      - name: Install dependencies
+        if: ${{ steps.cache-dependencies.outputs.cache-hit == false }}
+        run: npm i --legacy-peer-deps
+      - name: Run tests
+        run: npm test
+      - name: Save coverage report
+        uses: actions/upload-artifact@v3
+        with:
+          name: coverage
+          path: coverage/
+  scan:
+    runs-on: ubuntu-latest
+    needs:
+      - test
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Restore coverage report
+        uses: actions/download-artifact@v3
+        with:
+          name: coverage
+          path: coverage/
+      - name: Run SonarCloud scan
+        uses: SonarSource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Cache dependencies
+        id: cache-dependencies
+        uses: actions/cache@v3
+        with:
+          key: ${{ runner.os }}-${{ hashFiles('**/package.json') }}
+          path: |
+            node_modules
+            ~/.npm
+      - name: Install dependencies
+        if: ${{ steps.cache-dependencies.outputs.cache-hit == false }}
+        run: npm i --legacy-peer-deps
+      - name: Build the app
+        run: npm run build

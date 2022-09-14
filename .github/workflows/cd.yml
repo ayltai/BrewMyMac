@@ -1,0 +1,36 @@
+name: CD
+on:
+  release:
+    types:
+      - created
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Cache dependencies
+        id: cache-dependencies
+        uses: actions/cache@v3
+        with:
+          key: ${{ runner.os }}-${{ hashFiles('**/package.json') }}
+          path: |
+            node_modules
+            ~/.npm
+      - name: Install dependencies
+        if: ${{ steps.cache-dependencies.outputs.cache-hit == false }}
+        run: npm i --legacy-peer-deps
+      - name: Build the app
+        run: npm run build
+        env:
+          REACT_APP_GA_TAG: ${{ secrets.REACT_APP_GA_TAG }}
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build
+          cname: brewmymac.sh
