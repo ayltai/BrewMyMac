@@ -49,7 +49,9 @@ export const ActionBar = ({
 
     return (
         <>
-            <AppBar position='sticky'>
+            <AppBar
+                position='sticky'
+                color='inherit'>
                 <Toolbar>
                     <Grid
                         container

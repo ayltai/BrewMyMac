@@ -6,7 +6,7 @@ exports[`<Home /> renders correctly 1`] = `
     class="MuiBox-root css-tl0jo"
   >
     <header
-      class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation4 MuiAppBar-root MuiAppBar-colorPrimary MuiAppBar-positionSticky css-qv5qw8-MuiPaper-root-MuiAppBar-root"
+      class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation4 MuiAppBar-root MuiAppBar-colorInherit MuiAppBar-positionSticky css-a98ft2-MuiPaper-root-MuiAppBar-root"
     >
       <div
         class="MuiToolbar-root MuiToolbar-gutters MuiToolbar-regular css-hyum1k-MuiToolbar-root"
@@ -138,29 +138,33 @@ exports[`<Home /> renders correctly 1`] = `
           <div
             class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-3 css-kivoit-MuiGrid-root"
           >
-            <button
+            <span
               aria-label="action_install"
-              class="MuiButtonBase-root Mui-disabled MuiIconButton-root Mui-disabled MuiIconButton-sizeMedium  css-1v9e55o-MuiButtonBase-root-MuiIconButton-root"
+              class=""
               data-mui-internal-clone-element="true"
-              disabled=""
-              tabindex="-1"
-              type="button"
             >
-              <svg
-                aria-hidden="true"
-                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
-                data-testid="InstallDesktopIcon"
-                focusable="false"
-                viewBox="0 0 24 24"
+              <button
+                class="MuiButtonBase-root Mui-disabled MuiIconButton-root Mui-disabled MuiIconButton-sizeMedium css-1v9e55o-MuiButtonBase-root-MuiIconButton-root"
+                disabled=""
+                tabindex="-1"
+                type="button"
               >
-                <path
-                  d="M20 17H4V5h8V3H4c-1.11 0-2 .89-2 2v12c0 1.1.89 2 2 2h4v2h8v-2h4c1.1 0 2-.9 2-2v-3h-2v3z"
-                />
-                <path
-                  d="m17 14 5-5-1.41-1.41L18 10.17V3h-2v7.17l-2.59-2.58L12 9z"
-                />
-              </svg>
-            </button>
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+                  data-testid="InstallDesktopIcon"
+                  focusable="false"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M20 17H4V5h8V3H4c-1.11 0-2 .89-2 2v12c0 1.1.89 2 2 2h4v2h8v-2h4c1.1 0 2-.9 2-2v-3h-2v3z"
+                  />
+                  <path
+                    d="m17 14 5-5-1.41-1.41L18 10.17V3h-2v7.17l-2.59-2.58L12 9z"
+                  />
+                </svg>
+              </button>
+            </span>
             <button
               aria-pressed="false"
               class="MuiButtonBase-root MuiToggleButton-root MuiToggleButton-sizeSmall MuiToggleButton-primary css-ojuua3-MuiButtonBase-root-MuiToggleButton-root"

@@ -68,7 +68,7 @@ export const SessionDetail = ({
             </Typography>
             <CopyableTextField
                 fullWidth
-                value={`/bin/bash -c "$(curl -fsSL https://x8ki-letl-twmt.n7.xano.io/api:bt-93slL/sessions/${session.sessionId} | jq -r '.script')"`} />
+                value={`/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)" && eval "$(/opt/homebrew/bin/brew shellenv)" && brew install jq && /bin/bash -c "$(curl -fsSL https://x8ki-letl-twmt.n7.xano.io/api:bt-93slL/sessions/${session.sessionId} | jq -r '.script')"`} />
         </PopUpDialog>
     );
 };

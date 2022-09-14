@@ -92,18 +92,20 @@ export const Home = () => {
                 rightComponent={
                     <>
                         <Tooltip title={t('action_install')}>
-                            <RightAlignedIconButton
-                                disabled={session.items.length === 0}
-                                onClick={handleInstall}>
-                                {session.items.length > 0 && (
-                                    <Badge
-                                        color='primary'
-                                        badgeContent={session.items.length}>
-                                        <InstallDesktop />
-                                    </Badge>
-                                )}
-                                {session.items.length === 0 && <InstallDesktop />}
-                            </RightAlignedIconButton>
+                            <span>
+                                <RightAlignedIconButton
+                                    disabled={session.items.length === 0}
+                                    onClick={handleInstall}>
+                                    {session.items.length > 0 && (
+                                        <Badge
+                                            color='primary'
+                                            badgeContent={session.items.length}>
+                                            <InstallDesktop />
+                                        </Badge>
+                                    )}
+                                    {session.items.length === 0 && <InstallDesktop />}
+                                </RightAlignedIconButton>
+                            </span>
                         </Tooltip>
                         <RightAlignedToggleButton
                             size='small'

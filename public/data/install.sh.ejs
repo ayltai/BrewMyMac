@@ -2,23 +2,15 @@
 set -u
 printf '\e[8;50;120t'
 
-echo '⏳ Checking if Homebrew is installed ...'
-which -s brew
-if [[ $? != 0 ]]; then
-    echo '⏳ Installing Homebrew ...'
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
-fi
-echo '✅ Homebrew is installed'
-
 echo '⏳ Installing prerequisites ...'
-brew install jq figlet
+brew install figlet
 echo '✅ Prerequisites are installed'
 
 figlet -f slant -c 'Brew My Mac'
 
 <% if (items.some(item => item.source === 'Homebrew')) { %>
 echo '⏳ Installing Homebrew packages ...'
-  <% items.forEach(function(item) { %>
+  <% items.forEach(item => { %>
     <% if (item.source === 'Homebrew') { %>
 brew install <%= item.id %>
 if [[ $? != 0 ]]; then
@@ -30,9 +22,9 @@ fi
   <% }) %>
 <% } %>
 
-<% if (items.some(function(item) { return item.source === 'Homebrew-Cask'; })) { %>
+<% if (items.some(item => item.source === 'Homebrew-Cask')) { %>
 echo '⏳ Installing Homebrew Cask packages ...'
-  <% items.forEach(function(item) { %>
+  <% items.forEach(item => { %>
     <% if (item.source === 'Homebrew-Cask') { %>
 brew install <%= item.id %>
 if [[ $? != 0 ]]; then
@@ -44,12 +36,12 @@ fi
   <% }) %>
 <% } %>
 
-<% if (items.some(function(item) { return item.source === 'App Store'; })) { %>
+<% if (items.some(item => item.source === 'App Store')) { %>
 echo -n "❓ Press Command+C to quit now if you have not already signed in to App Store. Otherwise, press any key to continue "
 for _ in { 1.. 10 }; do read -rs -n1 -t1 || printf "."; done
 
 echo '⏳ Installing App Store apps ...'
-  <% items.forEach(function(item) { %>
+  <% items.forEach(item => { %>
     <% if (item.source === 'App Store') { %>
 mas install <%= item.id %>
 if [[ $? != 0 ]]; then
@@ -61,7 +53,7 @@ fi
   <% }) %>
 <% } %>
 
-<% if (items.some(function(item) { return item.source === 'Tweak'; })) { %>
+<% if (items.some(item => item.source === 'Tweak')) { %>
 echo '⏳ Checking if Ansible is installed ...'
 which -s ansible
 if [[ $? != 0 ]]; then
@@ -79,7 +71,7 @@ ansible-playbook /tmp/playbook.yml --extra-vars "<%= items.map(item => item.para
 if [[ $? != 0 ]]; then
     echo '❌ Failed to apply one or more tweaks'
 else
-    echo '✅ Successfully applied <%= items.length %> tweak<%= items.length === 1 ? '' : 's' %>'
+    echo '✅ Successfully applied <%= items.filter(item => item.source === 'Tweak').length %> tweak<%= items.filter(item => item.source === 'Tweak').length === 1 ? '' : 's' %>'
 fi
 rm /tmp/playbook.yml
 <% } %>

@@ -15,14 +15,20 @@ const INITIAL_FILTER = 'firefox';
 export const mockApis = async () => {
     const HOMEBREW_API_RESPONSE : HomebrewFormula[] = [
         {
-            name      : `${INITIAL_FILTER} homebrew name`,
+            token     : `${INITIAL_FILTER} homebrew token`,
+            name      : [
+                `${INITIAL_FILTER} homebrew name`,
+            ],
             full_name : `${INITIAL_FILTER} homebrew full name`,
         },
     ];
 
     const HOMEBREW_CAST_API_RESPONSE : HomebrewFormula[] = [
         {
-            name      : `${INITIAL_FILTER} homebrew cask name`,
+            token     : `${INITIAL_FILTER} homebrew cask token`,
+            name      : [
+                `${INITIAL_FILTER} homebrew cask name`,
+            ],
             full_name : `${INITIAL_FILTER} homebrew cask full name`,
         },
     ];

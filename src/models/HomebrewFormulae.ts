@@ -1,5 +1,6 @@
 export type HomebrewFormula = {
-    name      : string,
-    full_name : string,
-    desc?     : string,
+    token?     : string,
+    name       : string | string[],
+    full_name? : string,
+    desc?      : string,
 };
