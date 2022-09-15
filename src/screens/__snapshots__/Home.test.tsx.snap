@@ -3,6 +3,41 @@
 exports[`<Home /> renders correctly 1`] = `
 <DocumentFragment>
   <div
+    class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation3 css-1zm9be-MuiPaper-root"
+  >
+    <div
+      class="MuiBox-root css-1hog1e3"
+    >
+      <div
+        class="MuiBox-root css-1c5ij41"
+      >
+        <a
+          class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-19irfk-MuiTypography-root-MuiLink-root"
+        >
+          label_terms_title
+        </a>
+      </div>
+      <div
+        class="MuiBox-root css-1c5ij41"
+      >
+        <a
+          class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-19irfk-MuiTypography-root-MuiLink-root"
+        >
+          label_privacy_title
+        </a>
+      </div>
+      <div
+        class="MuiBox-root css-1c5ij41"
+      >
+        <a
+          class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-19irfk-MuiTypography-root-MuiLink-root"
+        >
+          label_disclaimer_title
+        </a>
+      </div>
+    </div>
+  </div>
+  <div
     class="MuiBox-root css-tl0jo"
   >
     <header
