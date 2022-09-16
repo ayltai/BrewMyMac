@@ -71,7 +71,7 @@
         "@types/react-test-renderer"    : "^18.0.0",
         "@types/uuid"                   : "^8.3.4",
         "babel-jest"                    : "^29.0.3",
-        "eslint"                        : "8.22.0",
+        "eslint"                        : "8.23.1",
         "eslint-plugin-import"          : "^2.26.0",
         "eslint-plugin-jest"            : "^27.0.4",
         "eslint-plugin-jest-dom"        : "^4.0.2",
