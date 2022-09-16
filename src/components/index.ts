@@ -6,5 +6,6 @@ export { ItemList, } from './ItemList';
 export { Loading, } from './Loading';
 export { MarkdownDialog, } from './MarkdownDialog';
 export { PopUpDialog, } from './PopUpDialog';
+export { PopUpFooter, } from './PopUpFooter';
 export { SearchBox, } from './SearchBox';
 export { SelectableItem, } from './SelectableItem';
