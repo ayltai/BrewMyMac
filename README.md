@@ -7,6 +7,10 @@
 
 Possibly the coolest way to install apps and customize your Mac!
 
+## Introduction
+
+This [article](https://ayltai.medium.com/install-mac-apps-and-tweaks-with-a-single-command-6b1b90c466b5) explains the motivation behind this project.
+
 ## Getting started
 
 Try it: [https://brewmymac.sh](https://brewmymac.sh)
