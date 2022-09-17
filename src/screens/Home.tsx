@@ -1,7 +1,7 @@
+import mixpanel from 'mixpanel-browser';
 import { InstallDesktop, } from '@mui/icons-material';
 import { Badge, Box, Grid, IconButton, styled, ToggleButton, Tooltip, } from '@mui/material';
 import { render, } from 'ejs';
-import { useGA4React, } from 'ga-4-react';
 import React, { useEffect, useState, } from 'react';
 import { useTranslation, } from 'react-i18next';
 import { v4, } from 'uuid';
@@ -29,7 +29,6 @@ const RightAlignedIconButton = styled(IconButton)(({ theme, }) => ({
 }));
 
 export const Home = () => {
-    const ga      = useGA4React(process.env.REACT_APP_GA_TAG);
     const session = useAppSelector(state => state.session);
 
     const [ filter,            setFilter,            ] = useState<string>('');
@@ -77,8 +76,8 @@ export const Home = () => {
     };
 
     useEffect(() => {
-        if (ga) ga.pageview('/');
-    }, [ ga, ]);
+        mixpanel.track_links('Home', 'Page View');
+    }, []);
 
     return (
         <>

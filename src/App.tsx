@@ -1,7 +1,10 @@
+import Bugsnag from '@bugsnag/js';
+import BugsnagPluginReact from '@bugsnag/plugin-react';
 import { Backdrop, Button, createTheme, CssBaseline, ThemeProvider, Typography, } from '@mui/material';
-import { GA4React, } from 'ga-4-react';
-import React, { useEffect, useMemo, } from 'react';
-import { ErrorBoundary, } from 'react-error-boundary';
+import * as Sentry from '@sentry/react';
+import { BrowserTracing, } from '@sentry/tracing';
+import mixpanel from 'mixpanel-browser';
+import React, { useMemo, } from 'react';
 import { useTranslation, } from 'react-i18next';
 import { Provider, } from 'react-redux';
 import { PersistGate, } from 'redux-persist/integration/react';
@@ -17,27 +20,52 @@ import { persistor, reset, store, } from './redux';
 import { Home, } from './screens';
 import { palette, } from './styles';
 
+mixpanel.init(process.env.REACT_APP_MIXPANEL_TOKEN!, {
+    debug : process.env.NODE_ENV !== 'production',
+});
+
+Bugsnag.start({
+    apiKey  : process.env.REACT_APP_BUGSNAG_KEY!,
+    plugins : [
+        new BugsnagPluginReact(),
+    ],
+});
+
+Sentry.init({
+    dsn          : process.env.REACT_APP_SENTRY_DSN,
+    environment  : process.env.NODE_ENV,
+    integrations : [
+        new BrowserTracing(),
+    ],
+});
+
 const ErrorFallback = ({
     error,
-    resetErrorBoundary,
+    resetError,
 } : {
-    error              : Error,
-    resetErrorBoundary : () => void,
+    error      : Error,
+    resetError : () => void,
 }) => {
+    const dispatch = useAppDispatch();
+
     const { t, } = useTranslation();
+
+    const handleReset = () => {
+        dispatch(reset());
+
+        resetError();
+    };
 
     return (
         <Backdrop open>
             <Typography variant='body1'>{t('error')}</Typography>
             <pre>{error.message}</pre>
-            <Button onClick={resetErrorBoundary}>{t('action_try_again')}</Button>
+            <Button onClick={handleReset}>{t('action_try_again')}</Button>
         </Backdrop>
     );
 };
 
 const AppRoot = () => {
-    const dispatch        = useAppDispatch();
-    const ga              = process.env.REACT_APP_GA_TAG ? new GA4React(process.env.REACT_APP_GA_TAG) : undefined;
     const prefersDarkMode = useMediaQuery('(prefers-color-scheme : dark)');
 
     const theme = useMemo(() => createTheme({
@@ -47,25 +75,14 @@ const AppRoot = () => {
         },
     }), [ prefersDarkMode, ]);
 
-    const handleError = (error : Error) => {
-        if (ga) ga.event('Error', JSON.stringify(error), 'Error');
-    };
-
-    const handleReset = () => dispatch(reset());
-
-    useEffect(() => {
-        if (ga && !GA4React.isInitialized()) ga.initialize().catch(handleError);
-    }, []);
-
     return (
         <ThemeProvider theme={theme}>
             <CssBaseline />
-            <ErrorBoundary
-                FallbackComponent={ErrorFallback}
-                onError={handleError}
-                onReset={handleReset}>
+            <Sentry.ErrorBoundary
+                showDialog
+                fallback={ErrorFallback}>
                 <Home />
-            </ErrorBoundary>
+            </Sentry.ErrorBoundary>
         </ThemeProvider>
     );
 };

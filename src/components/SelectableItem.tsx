@@ -1,5 +1,5 @@
+import mixpanel from 'mixpanel-browser';
 import { Box, Button, Card, CardActionArea, CardActions, CardContent, Chip, styled, Typography, } from '@mui/material';
-import { useGA4React, } from 'ga-4-react';
 import React, { useState, } from 'react';
 import { useTranslation, } from 'react-i18next';
 
@@ -34,7 +34,6 @@ export const SelectableItem = ({
 } : {
     item : Item,
 }) => {
-    const ga       = useGA4React(process.env.REACT_APP_GA_TAG);
     const dispatch = useAppDispatch();
     const session  = useAppSelector(state => state.session);
 
@@ -48,9 +47,12 @@ export const SelectableItem = ({
         if (selectedItem) {
             dispatch(removeItem(item));
         } else {
-            if (ga) ga.event(item.source, item.id, 'Selection');
-
             dispatch(addItem(item));
+
+            mixpanel.track('Add Item', {
+                id     : item.id,
+                source : item.source,
+            });
         }
     };
 

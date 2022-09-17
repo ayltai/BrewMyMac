@@ -34,7 +34,7 @@ You need [Node.js](https://nodejs.org) and [npm](https://www.npmjs.com) installe
    npm i --legacy-peer-deps
    ```
 2. Change the homepage URL in `package.json` to `.`
-3. This app uses [Google Analytics](https://analytics.google.com) to track usage. You can change the GTAG ID to your own by setting the `REACT_APP_GA_TAG` environment variable.
+3. This app uses [Bugsnag](https://www.bugsnag.com) and [Sentry](https://sentry.io) to track errors and [Mixpanel](https://mixpanel.com) to track usage. You can [create a `.env` file](https://create-react-app.dev/docs/adding-custom-environment-variables/#adding-development-environment-variables-in-env) and adding your own keys by setting the `REACT_APP_MIXPANEL_TOKEN`, `REACT_APP_BUGSNAG_KEY` and `REACT_APP_SENTRY_DSN` environment variables.
 4. Start the development server
    ```bash
    npm start

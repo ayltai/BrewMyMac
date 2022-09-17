@@ -68,3 +68,7 @@ jobs:
         run: npm i --legacy-peer-deps
       - name: Build the app
         run: npm run build
+        env:
+          REACT_APP_MIXPANEL_TOKEN: ${{ secrets.REACT_APP_MIXPANEL_TOKEN }}
+          REACT_APP_BUGSNAG_KEY: ${{ secrets.REACT_APP_BUGSNAG_KEY }}
+          REACT_APP_SENTRY_DSN: ${{ secrets.REACT_APP_SENTRY_DSN }}

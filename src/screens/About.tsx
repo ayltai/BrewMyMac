@@ -1,9 +1,13 @@
+import mixpanel from 'mixpanel-browser';
 import { Box, Link, styled, Typography, } from '@mui/material';
-import { useGA4React, } from 'ga-4-react';
 import React, { useEffect, } from 'react';
 import { useTranslation, } from 'react-i18next';
 
 import { PopUpDialog, } from '../components';
+
+const ClickableLink = styled(Link)`
+    cursor : pointer;
+`;
 
 const LineBreakingTypography = styled(Typography)({
     whiteSpace: 'pre-line',
@@ -14,13 +18,17 @@ export const About = ({
 } : {
     onClose? : () => void,
 }) => {
-    const ga = useGA4React(process.env.REACT_APP_GA_TAG);
-
     const { t, } = useTranslation();
 
+    const handleLinkedInClick = () => {
+        mixpanel.track_links('LinkedIn', 'Referral');
+
+        window.open(t('url_linkedin'), '_blank');
+    };
+
     useEffect(() => {
-        if (ga) ga.pageview('/about');
-    }, [ ga, ]);
+        mixpanel.track_links('About', 'Page View');
+    }, []);
 
     return (
         <PopUpDialog
@@ -42,11 +50,9 @@ export const About = ({
                 variant="body1">
                 {t('label_about_description')}
             </LineBreakingTypography>
-            <Link
-                href={t('url_linkedin')}
-                target='_blank'>
+            <ClickableLink onClick={handleLinkedInClick}>
                 {t('action_follow')}
-            </Link>
+            </ClickableLink>
         </PopUpDialog>
     );
 };

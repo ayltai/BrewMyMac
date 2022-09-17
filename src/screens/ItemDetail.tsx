@@ -1,5 +1,5 @@
+import mixpanel from 'mixpanel-browser';
 import { Box, Chip, TextField, Typography, } from '@mui/material';
-import { useGA4React, } from 'ga-4-react';
 import React, { useEffect, } from 'react';
 import { useTranslation, } from 'react-i18next';
 
@@ -15,15 +15,13 @@ export const ItemDetail = ({
     onClose?  : () => void,
     onChange? : (value? : string) => void,
 }) => {
-    const ga = useGA4React(process.env.REACT_APP_GA_TAG);
-
     const { t, } = useTranslation();
 
     const handleChange = (event : React.ChangeEvent<HTMLInputElement>) => onChange && onChange(event.target.value);
 
     useEffect(() => {
-        if (ga) ga.pageview('/itemDetail');
-    }, [ ga, ]);
+        mixpanel.track_links('Item Detail', 'Page View');
+    }, []);
 
     return (
         <PopUpDialog

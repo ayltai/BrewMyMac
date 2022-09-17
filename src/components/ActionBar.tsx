@@ -1,6 +1,6 @@
+import mixpanel from 'mixpanel-browser';
 import { GitHub, } from '@mui/icons-material';
 import { AppBar, Box, IconButton, Grid, Link, styled, Toolbar, } from '@mui/material';
-import { useGA4React, } from 'ga-4-react';
 import React from 'react';
 
 const ClickableImage = styled('img')`
@@ -20,12 +20,10 @@ export const ActionBar = ({
     centerComponent? : React.ReactNode,
     rightComponent?  : React.ReactNode,
 }) => {
-    const ga = useGA4React(process.env.REACT_APP_GA_TAG);
-
     const handleHomepageClick = () => window.open('/', '_self');
 
     const handleGitHubClick = () => {
-        if (ga) ga.event('Click', 'GitHub', 'Referral');
+        mixpanel.track_links('GtiHub', 'Referral');
 
         window.open('https://github.com/ayltai/BrewMyMac', '_blank');
     };

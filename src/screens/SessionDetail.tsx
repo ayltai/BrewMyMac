@@ -1,6 +1,6 @@
+import mixpanel from 'mixpanel-browser';
 import { NotificationImportant, } from '@mui/icons-material';
 import { Box, Link, Typography, } from '@mui/material';
-import { useGA4React, } from 'ga-4-react';
 import React, { useEffect, } from 'react';
 import { useTranslation, } from 'react-i18next';
 
@@ -16,13 +16,11 @@ export const SessionDetail = ({
     items    : Item[],
     onClose? : () => void,
 }) => {
-    const ga = useGA4React(process.env.REACT_APP_GA_TAG);
-
     const { t, } = useTranslation();
 
     useEffect(() => {
-        if (ga) ga.pageview('/sessionDetail');
-    }, [ ga, ]);
+        mixpanel.track_links('Session Detail', 'Page View');
+    }, []);
 
     return (
         <PopUpDialog
