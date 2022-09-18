@@ -1,0 +1,80 @@
+#!/bin/bash
+set -u
+printf '\e[8;50;120t'
+
+echo '⏳ Installing prerequisites ...'
+brew install figlet
+echo '✅ Prerequisites are installed'
+
+figlet -f slant -c 'Brew My Mac'
+
+<% if (items.some(item => item.source === 'Homebrew')) { %>
+echo '⏳ Installing Homebrew packages ...'
+  <% items.forEach(item => { %>
+    <% if (item.source === 'Homebrew') { %>
+brew install <%= item.id %>
+if [[ $? != 0 ]]; then
+    echo '❌ Failed to install <%= item.name %> from Homebrew'
+else
+    echo '✅ Successfully installed <%= item.name %> from Homebrew'
+fi
+    <% } %>
+  <% }) %>
+<% } %>
+
+<% if (items.some(item => item.source === 'Homebrew-Cask')) { %>
+echo '⏳ Installing Homebrew Cask packages ...'
+  <% items.forEach(item => { %>
+    <% if (item.source === 'Homebrew-Cask') { %>
+brew install <%= item.id %>
+if [[ $? != 0 ]]; then
+    echo '❌ Failed to install <%= item.name %> from Homebrew-Cask'
+else
+    echo '✅ Successfully installed <%= item.name %> from Homebrew-Cask'
+fi
+    <% } %>
+  <% }) %>
+<% } %>
+
+<% if (items.some(item => item.source === 'App Store')) { %>
+echo -n "❓ Press Command+C to quit now if you have not already signed in to App Store. Otherwise, press any key to continue "
+for _ in { 1.. 10 }; do read -rs -n1 -t1 || printf "."; done
+
+echo '⏳ Installing App Store apps ...'
+  <% items.forEach(item => { %>
+    <% if (item.source === 'App Store') { %>
+mas install <%= item.id %>
+if [[ $? != 0 ]]; then
+    echo '❌ Failed to install <%= item.name %> from App Store'
+else
+    echo '✅ Successfully installed <%= item.name %> from App Store'
+fi
+    <% } %>
+  <% }) %>
+<% } %>
+
+<% if (items.some(item => item.source === 'Tweak')) { %>
+echo '⏳ Checking if Ansible is installed ...'
+which -s ansible
+if [[ $? != 0 ]]; then
+    echo '⏳ Installing Ansible ...'
+    brew install ansible
+fi
+echo '✅ Ansible is installed'
+
+echo '🌎 Downloading Ansible playbook ...'
+curl -s -o /tmp/playbook.yml https://raw.githubusercontent.com/ayltai/ansible-macos-tweaks/master/playbook.yml
+
+echo '👉 Applying tweaks. You may be prompted for your root password.'
+echo '⏳ Running Ansible playbook ...'
+ansible-playbook /tmp/playbook.yml --extra-vars "<%= items.map(item => item.parameter === undefined ? `${item.id}_enabled=true` : `${item.id}_enabled=true ${item.id}_value=${item.parameter}`).join(' '); %>"
+if [[ $? != 0 ]]; then
+    echo '❌ Failed to apply one or more tweaks'
+else
+    echo '✅ Successfully applied <%= items.filter(item => item.source === 'Tweak').length %> tweak<%= items.filter(item => item.source === 'Tweak').length === 1 ? '' : 's' %>'
+fi
+rm /tmp/playbook.yml
+<% } %>
+
+echo '👉 BrewMyMac has finished.'
+figlet -f banner3-d 'Enjoy!'
