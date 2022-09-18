@@ -1,7 +1,7 @@
 {
     "name"            : "brew-my-mac",
     "description"     : "Possibly the coolest way to install apps and customize your Mac!",
-    "version"         : "1.0.8",
+    "version"         : "1.0.9",
     "author"          : {
         "name" : "Alan Tai"
     },
@@ -32,8 +32,6 @@
         "update"  : "npx npm-check-updates"
     },
     "dependencies"    : {
-        "@bugsnag/js"             : "^7.17.4",
-        "@bugsnag/plugin-react"   : "^7.17.4",
         "@emotion/react"          : "^11.10.4",
         "@emotion/styled"         : "^11.10.4",
         "@fontsource/inconsolata" : "^4.5.7",
@@ -63,7 +61,6 @@
         "@babel/preset-env"             : "^7.19.1",
         "@babel/preset-typescript"      : "^7.18.6",
         "@babel/runtime"                : "^7.19.0",
-        "@bugsnag/source-maps"          : "^2.3.1",
         "@sentry/cli"                   : "^2.5.2",
         "@testing-library/jest-dom"     : "^5.16.5",
         "@testing-library/react"        : "^13.4.0",

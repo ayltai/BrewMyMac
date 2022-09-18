@@ -4,11 +4,6 @@ import fetchMock from 'jest-fetch-mock';
 
 fetchMock.enableMocks();
 
-jest.mock('@bugsnag/js', () => ({
-    start  : () => {},
-    notify : () => {},
-}));
-
 jest.mock('mixpanel-browser', () => ({
     init        : () => {},
     track       : () => {},

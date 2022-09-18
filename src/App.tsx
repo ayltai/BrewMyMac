@@ -1,5 +1,3 @@
-import Bugsnag from '@bugsnag/js';
-import BugsnagPluginReact from '@bugsnag/plugin-react';
 import { Backdrop, Button, createTheme, CssBaseline, ThemeProvider, Typography, } from '@mui/material';
 import * as Sentry from '@sentry/react';
 import { BrowserTracing, } from '@sentry/tracing';
@@ -22,13 +20,6 @@ import { palette, } from './styles';
 
 mixpanel.init(process.env.REACT_APP_MIXPANEL_TOKEN!, {
     debug : process.env.NODE_ENV !== 'production',
-});
-
-Bugsnag.start({
-    apiKey  : process.env.REACT_APP_BUGSNAG_KEY!,
-    plugins : [
-        new BugsnagPluginReact(),
-    ],
 });
 
 Sentry.init({
