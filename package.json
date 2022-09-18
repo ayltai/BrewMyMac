@@ -1,7 +1,7 @@
 {
     "name"            : "brew-my-mac",
     "description"     : "Possibly the coolest way to install apps and customize your Mac!",
-    "version"         : "1.0.9",
+    "version"         : "1.0.10",
     "author"          : {
         "name" : "Alan Tai"
     },
@@ -43,7 +43,7 @@
         "@sentry/tracing"         : "^7.13.0",
         "ejs"                     : "^3.1.8",
         "flexsearch"              : "^0.7.21",
-        "i18next"                 : "^21.9.1",
+        "i18next"                 : "^21.9.2",
         "markdown-to-jsx"         : "^7.1.7",
         "minisearch"              : "^5.0.0",
         "mixpanel-browser"        : "^2.45.0",

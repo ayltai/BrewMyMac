@@ -23,9 +23,10 @@ mixpanel.init(process.env.REACT_APP_MIXPANEL_TOKEN!, {
 });
 
 Sentry.init({
-    dsn          : process.env.REACT_APP_SENTRY_DSN,
-    environment  : process.env.NODE_ENV,
-    integrations : [
+    dsn              : process.env.REACT_APP_SENTRY_DSN,
+    environment      : process.env.NODE_ENV,
+    tracesSampleRate : 1,
+    integrations     : [
         new BrowserTracing(),
     ],
 });

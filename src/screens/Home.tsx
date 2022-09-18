@@ -76,7 +76,9 @@ export const Home = () => {
     };
 
     useEffect(() => {
-        mixpanel.track_links('Home', 'Page View');
+        mixpanel.track('Page View', {
+            name : 'Home',
+        });
     }, []);
 
     return (

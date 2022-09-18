@@ -89,13 +89,13 @@ jobs:
           name: build
           path: build/
       - name: Create a new Sentry release
-        run: ./node_modules/.bin/sentry-cli releases new 1.0.9
+        run: ./node_modules/.bin/sentry-cli releases new 1.0.10
         env:
           SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
           SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
           SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
       - name: Upload source maps to Sentry
-        run: ./node_modules/.bin/sentry-cli releases files 1.0.9 upload-sourcemaps build --rewrite
+        run: ./node_modules/.bin/sentry-cli releases files 1.0.10 upload-sourcemaps build --rewrite
         env:
           SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
           SENTRY_ORG: ${{ secrets.SENTRY_ORG }}

@@ -20,7 +20,9 @@ export const ItemDetail = ({
     const handleChange = (event : React.ChangeEvent<HTMLInputElement>) => onChange && onChange(event.target.value);
 
     useEffect(() => {
-        mixpanel.track_links('Item Detail', 'Page View');
+        mixpanel.track('Page View', {
+            name : 'Item Detail',
+        });
     }, []);
 
     return (

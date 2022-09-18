@@ -19,7 +19,9 @@ export const SessionDetail = ({
     const { t, } = useTranslation();
 
     useEffect(() => {
-        mixpanel.track_links('Session Detail', 'Page View');
+        mixpanel.track('Page View', {
+            name : 'Session Detail',
+        });
     }, []);
 
     return (

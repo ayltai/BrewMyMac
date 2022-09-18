@@ -21,13 +21,17 @@ export const About = ({
     const { t, } = useTranslation();
 
     const handleLinkedInClick = () => {
-        mixpanel.track_links('LinkedIn', 'Referral');
+        mixpanel.track('Referral', {
+            name : 'LinkedIn',
+        });
 
         window.open(t('url_linkedin'), '_blank');
     };
 
     useEffect(() => {
-        mixpanel.track_links('About', 'Page View');
+        mixpanel.track('Page View', {
+            name : 'About',
+        });
     }, []);
 
     return (
