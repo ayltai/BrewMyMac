@@ -13,6 +13,8 @@ import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 
+import PackageInfo from '../package.json';
+
 import { useAppDispatch, } from './hooks';
 import { persistor, reset, store, } from './redux';
 import { Home, } from './screens';
@@ -25,6 +27,7 @@ mixpanel.init(process.env.REACT_APP_MIXPANEL_TOKEN!, {
 Sentry.init({
     dsn              : process.env.REACT_APP_SENTRY_DSN,
     environment      : process.env.NODE_ENV,
+    release          : PackageInfo.version,
     tracesSampleRate : 1,
     integrations     : [
         new BrowserTracing(),
