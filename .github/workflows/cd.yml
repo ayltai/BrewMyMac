@@ -56,6 +56,9 @@ jobs:
     needs:
       - deploy
     steps:
+      - name: Wait for 1 minute
+        run: sleep 60
+        shell: bash
       - name: Check the deployment
         uses: lakuapik/gh-actions-http-status@v1
         with:
@@ -88,14 +91,17 @@ jobs:
         with:
           name: build
           path: build/
+      - name: Retrieve release version information
+        uses: martinbeentjes/release-version-action@main
+        id: release-version
       - name: Create a new Sentry release
-        run: ./node_modules/.bin/sentry-cli releases new 1.0.10
+        run: ./node_modules/.bin/sentry-cli releases new ${{ steps.release-version.outputs.current-version }}
         env:
           SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
           SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
           SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
       - name: Upload source maps to Sentry
-        run: ./node_modules/.bin/sentry-cli releases files 1.0.10 upload-sourcemaps build --rewrite
+        run: ./node_modules/.bin/sentry-cli releases files ${{ steps.release-version.outputs.current-version }} upload-sourcemaps build --rewrite
         env:
           SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
           SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
