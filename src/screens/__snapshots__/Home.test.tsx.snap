@@ -184,7 +184,7 @@ exports[`<Home /> renders correctly 1`] = `
       </div>
     </header>
     <div
-      class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2 css-1ebqi03-MuiGrid-root"
+      class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2 css-9rc3yz-MuiGrid-root"
     >
       <div
         class="MuiGrid-root MuiGrid-container css-1r38uw2-MuiGrid-root"

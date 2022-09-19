@@ -12,6 +12,7 @@
     "label_selected"          : "Here's everything you have selected:",
     "label_app_store"         : "You need to sign in to the App Store to install the apps you have selected",
     "label_tweaks"            : "You need to disable System Integrity Protection (SIP) to apply the tweaks you have selected",
+    "label_website"           : "Visit the official website",
     "label_instruction"       : "Copy and paste the command below in your Terminal",
     "label_copy"              : "Command copied to clipboard",
     "label_about_title"       : "About BrewMyMac",

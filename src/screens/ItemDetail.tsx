@@ -1,9 +1,10 @@
 import mixpanel from 'mixpanel-browser';
 import { Box, Chip, TextField, Typography, } from '@mui/material';
+import Markdown from 'markdown-to-jsx';
 import React, { useEffect, } from 'react';
 import { useTranslation, } from 'react-i18next';
 
-import { PopUpDialog, } from '../components';
+import { ExternalLink, PopUpDialog, } from '../components';
 import type { Item, } from '../models';
 
 export const ItemDetail = ({
@@ -30,12 +31,19 @@ export const ItemDetail = ({
             open
             title={item.name}
             onClose={onClose}>
-            <Typography
-                gutterBottom
-                color='text.secondary'
-                variant='body2'>
-                {item.description}
-            </Typography>
+            {item.infoUrl && (
+                <ExternalLink
+                    title={t('label_website')}
+                    href={item.infoUrl} />
+            )}
+            {item.imageUrl && (
+                <Box textAlign='center'>
+                    <img
+                        src={item.imageUrl}
+                        alt={item.name} />
+                </Box>
+            )}
+            {item.description && <Markdown>{item.description}</Markdown>}
             {item.author && (
                 <Typography
                     gutterBottom
@@ -46,9 +54,11 @@ export const ItemDetail = ({
                     })}
                 </Typography>
             )}
-            <Chip
-                size='small'
-                label={item.source} />
+            <Box marginY={1}>
+                <Chip
+                    size='small'
+                    label={item.source} />
+            </Box>
             {item.source === 'Tweak' && item.parameter && (
                 <Box marginTop={4}>
                     <TextField

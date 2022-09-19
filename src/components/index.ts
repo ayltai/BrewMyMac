@@ -1,5 +1,6 @@
 export { ActionBar, } from './ActionBar';
 export { CopyableTextField, } from './CopyableTextField';
+export { ExternalLink, } from './ExternalLink';
 export { FilteredItemGrid, } from './FilteredItemGrid';
 export { Footer, } from './Footer';
 export { ItemList, } from './ItemList';

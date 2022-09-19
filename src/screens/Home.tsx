@@ -122,7 +122,9 @@ export const Home = () => {
                     } />
                 <Grid
                     container
-                    padding={2}
+                    paddingX={2}
+                    paddingTop={2}
+                    paddingBottom={8}
                     spacing={2}>
                     <FilteredItemGrid
                         selectedOnly={showSelected}

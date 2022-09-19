@@ -6,6 +6,7 @@ const convert = (formula : HomebrewFormula) => ({
     id          : formula.token ? formula.token : Array.isArray(formula.name) ? formula.name[0] : formula.name || '',
     name        : formula.full_name ? formula.full_name : Array.isArray(formula.name) ? formula.name[0] : formula.name || formula.token || '',
     description : formula.desc,
+    infoUrl     : formula.homepage,
 });
 
 export const homebrewApi = createApi({

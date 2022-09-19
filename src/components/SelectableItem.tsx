@@ -100,9 +100,11 @@ export const SelectableItem = ({
                             variant='body2'>
                             {(selectedItem || item).description}
                         </TruncatedTypography>
-                        <Chip
-                            size='small'
-                            label={(selectedItem || item).source} />
+                        <Box marginTop={1}>
+                            <Chip
+                                size='small'
+                                label={(selectedItem || item).source} />
+                        </Box>
                     </CardContent>
                 </CardActionArea>
                 <CardActions>

@@ -1,13 +1,9 @@
 import mixpanel from 'mixpanel-browser';
-import { Box, Link, styled, Typography, } from '@mui/material';
+import { Box, styled, Typography, } from '@mui/material';
 import React, { useEffect, } from 'react';
 import { useTranslation, } from 'react-i18next';
 
-import { PopUpDialog, } from '../components';
-
-const ClickableLink = styled(Link)`
-    cursor : pointer;
-`;
+import { ExternalLink, PopUpDialog, } from '../components';
 
 const LineBreakingTypography = styled(Typography)({
     whiteSpace: 'pre-line',
@@ -46,7 +42,8 @@ export const About = ({
                 <img
                     width={128}
                     height={128}
-                    src={require('../LogoLarge.png')} />
+                    src={require('../LogoLarge.png')}
+                    alt={t('app_name')} />
             </Box>
             <LineBreakingTypography
                 gutterBottom
@@ -54,9 +51,9 @@ export const About = ({
                 variant="body1">
                 {t('label_about_description')}
             </LineBreakingTypography>
-            <ClickableLink onClick={handleLinkedInClick}>
-                {t('action_follow')}
-            </ClickableLink>
+            <ExternalLink
+                title={t('action_follow')}
+                onClick={handleLinkedInClick} />
         </PopUpDialog>
     );
 };

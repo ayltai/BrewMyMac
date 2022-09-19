@@ -3,4 +3,5 @@ export type HomebrewFormula = {
     name       : string | string[],
     full_name? : string,
     desc?      : string,
+    homepage?  : string,
 };

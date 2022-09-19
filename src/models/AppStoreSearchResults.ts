@@ -6,6 +6,7 @@ export type AppStoreSearchResult = {
     trackId        : string,
     trackName      : string,
     description?   : string,
+    trackViewUrl?  : string,
 };
 
 export type AppStoreSearchResults = {

@@ -32,13 +32,17 @@ exports[`<ItemGrid /> renders correctly 1`] = `
               class="MuiTypography-root MuiTypography-body2 css-l1juks-MuiTypography-root"
             />
             <div
-              class="MuiChip-root MuiChip-filled MuiChip-sizeSmall MuiChip-colorDefault MuiChip-filledDefault css-10rs1bw-MuiChip-root"
+              class="MuiBox-root css-164r41r"
             >
-              <span
-                class="MuiChip-label MuiChip-labelSmall css-wjsjww-MuiChip-label"
+              <div
+                class="MuiChip-root MuiChip-filled MuiChip-sizeSmall MuiChip-colorDefault MuiChip-filledDefault css-10rs1bw-MuiChip-root"
               >
-                Tweak
-              </span>
+                <span
+                  class="MuiChip-label MuiChip-labelSmall css-wjsjww-MuiChip-label"
+                >
+                  Tweak
+                </span>
+              </div>
             </div>
           </div>
           <span
