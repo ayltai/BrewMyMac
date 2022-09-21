@@ -5,16 +5,17 @@ import React, { useEffect, } from 'react';
 import { useTranslation, } from 'react-i18next';
 
 import { CopyableTextField, ItemList, PopUpDialog, } from '../components';
-import type { Item, Session, } from '../models';
+import { BREWMYMAC_API_ENDPOINT, } from '../constants';
+import type { Item, } from '../models';
 
 export const SessionDetail = ({
-    session,
+    sessionId,
     items,
     onClose,
 } : {
-    session  : Session,
-    items    : Item[],
-    onClose? : () => void,
+    sessionId : string,
+    items     : Item[],
+    onClose?  : () => void,
 }) => {
     const { t, } = useTranslation();
 
@@ -68,7 +69,7 @@ export const SessionDetail = ({
             </Typography>
             <CopyableTextField
                 fullWidth
-                value={`/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)" && eval "$(/opt/homebrew/bin/brew shellenv)" && brew install jq && /bin/bash -c "$(curl -fsSL https://x8ki-letl-twmt.n7.xano.io/api:bt-93slL/sessions/${session.sessionId} | jq -r '.script')"`} />
+                value={`/bin/bash -c "$(curl -fsSL ${BREWMYMAC_API_ENDPOINT}/api/sessions?sessionId=${sessionId}"`} />
         </PopUpDialog>
     );
 };

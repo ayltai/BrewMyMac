@@ -1,0 +1,6 @@
+# Terraform
+.terraform/
+.terraform.lock.hcl
+
+# Generated
+*.zip

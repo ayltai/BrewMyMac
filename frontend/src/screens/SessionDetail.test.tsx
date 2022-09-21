@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Item, Session, } from '../models';
+import { Item, } from '../models';
 import { render, } from '../utils/test';
 
 import { SessionDetail, } from './SessionDetail';
@@ -12,16 +12,11 @@ const ITEM : Item = {
     parameter : 'dummy_parameter',
 };
 
-const SESSION : Session = {
-    sessionId : 'dummy session id',
-    script    : 'dummy script',
-};
-
 describe('<SessionDetail />', () => {
     it('renders all child items', () => {
         const { getByText, } = render(
             <SessionDetail
-                session={SESSION}
+                sessionId='dummy_session_id'
                 items={[
                     ITEM,
                 ]} />

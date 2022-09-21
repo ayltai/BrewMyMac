@@ -3,7 +3,7 @@
 [![GitHub workflow status](https://img.shields.io/github/workflow/status/ayltai/BrewMyMac/CI?style=flat)](https://github.com/ayltai/BrewMyMac/actions)
 [![Coverage](https://img.shields.io/sonar/coverage/ayltai_BrewMyMac?server=https%3A%2F%2Fsonarcloud.io)](https://sonarcloud.io/dashboard?id=ayltai_BrewMyMac)
 [![Quality gate](https://img.shields.io/sonar/quality_gate/ayltai_BrewMyMac?server=https%3A%2F%2Fsonarcloud.io)](https://sonarcloud.io/dashboard?id=ayltai_BrewMyMac)
-![Vulnerabilities](https://img.shields.io/snyk/vulnerabilities/github/ayltai/BrewMyMac?style=flat)
+[![Vulnerabilities](https://snyk.io/test/github/ayltai/BrewMyMac/badge.svg?targetFile=frontend/package.json)](https://snyk.io/test/github/ayltai/BrewMyMac?targetFile=frontend/package.json)
 
 Possibly the coolest way to install apps and customize your Mac!
 
@@ -25,7 +25,11 @@ Try it: [https://brewmymac.sh](https://brewmymac.sh)
 
 * [macOS tweaks](https://github.com/ayltai/ansible-macOS-tweaks): A collection of nearly 50 macOS customizations
 
-## Running locally
+## Frontend
+
+The frontend is a React single-page application created using [Create React App](https://create-react-app.dev). The code is located under `frontend` directory.
+
+### Running locally
 
 You need [Node.js](https://nodejs.org) and [npm](https://www.npmjs.com) installed on your machine.
 
@@ -41,7 +45,7 @@ You need [Node.js](https://nodejs.org) and [npm](https://www.npmjs.com) installe
    ```
 5. Open [http://localhost:3000](http://localhost:3000) with your browser
 
-## Building from source
+### Building from source
 
 You need [Node.js](https://nodejs.org) and [npm](https://www.npmjs.com) installed on your machine.
 
@@ -55,20 +59,28 @@ You need [Node.js](https://nodejs.org) and [npm](https://www.npmjs.com) installe
    ```
 3. The built app will be in the `build` folder
 
-## Deploying your own instance
+## Backend
 
-Apart from changing the values in steps 2 and 3 in the [Running locally](#running-locally) section, you will need to create your own API for saving and retrieving sessions.
+The backend is a Node.js application targeted to run as [Azure Functions](https://azure.microsoft.com/en-us/services/functions/). The code is located under `backend` directory.
 
-A session is a generated Shell script that contains the list of apps to be installed and tweaks to be applied and it is uniquely identified by its ID. The minimal data structure of a session is as follows:
+### Deploying your own instance
 
-```json
-{
-   "sessionId": "string",
-   "script": "string"
-}
-```
+[Terraform](https://www.terraform.io) is used to deploy the backend to [Azure](https://azure.microsoft.com). The code is located under `terraform` directory.
 
-This project uses [Xano](https://www.xano.com) as the backend service which provides persistent data storage and RESTful APIs. You can use any other service that provides similar functionality. If you do that, you need to change the URLs in `src/api/session.ts` and `src/screens/SessionDetail.tsx`.
+1. Install [Terraform](https://www.terraform.io/downloads.html)
+2. Install [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli)
+3. Build the backend
+   ```bash
+   cd backend
+   npm run build
+   cd ../terraform
+   ``` 
+4. Authenticate with Azure: There are different ways to authenticate with Azure. See [here](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/guides/service_principal_client_secret) for more details. Make sure the role running Terraform has the `Contributor` role on the subscription.
+5. Run `terraform init` to initialize the Terraform working directory. You will probably need to change the `backend` configuration in `backends.tf` to use a different way to manage your Terraform state.
+6. Run `terraform plan` to see what changes will be made to your infrastructure. You will probably need to change the `variables.tf` file to use a different resource group name, location, etc.
+7. Run `terraform apply` to apply the changes. You will probably need to change the `variables.tf` file as explained above.
+8. The backend will be deployed to Azure. You can now run the frontend locally or deploy it to Azure or GitHub Pages as well.
+9. You can run `terraform destroy` to destroy the backend when you no longer need it.
 
 ## Architecture
 

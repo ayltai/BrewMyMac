@@ -4,7 +4,7 @@ on:
     types:
       - created
 jobs:
-  build:
+  build-frontend:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -14,47 +14,119 @@ jobs:
         with:
           node-version: 18
       - name: Cache dependencies
-        id: cache-dependencies
+        id: cache-dependencies-frontend
         uses: actions/cache@v3
         with:
-          key: ${{ runner.os }}-${{ hashFiles('**/package.json') }}
+          key: ${{ runner.os }}-${{ hashFiles('frontend/package.json') }}
           path: |
-            node_modules
+            frontend/node_modules
             ~/.npm
       - name: Install dependencies
-        if: ${{ steps.cache-dependencies.outputs.cache-hit == false }}
+        if: ${{ steps.cache-dependencies-frontend.outputs.cache-hit == false }}
         run: npm i --legacy-peer-deps
+        working-directory: frontend
       - name: Build the app
         run: npm run build
+        working-directory: frontend
         env:
           REACT_APP_MIXPANEL_TOKEN: ${{ secrets.REACT_APP_MIXPANEL_TOKEN }}
-          REACT_APP_BUGSNAG_KEY: ${{ secrets.REACT_APP_BUGSNAG_KEY }}
           REACT_APP_SENTRY_DSN: ${{ secrets.REACT_APP_SENTRY_DSN }}
       - name: Save the build
         uses: actions/upload-artifact@v3
         with:
-          name: build
-          path: build/
-  deploy:
+          name: frontend-build
+          path: frontend/build/
+  build-backend:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Cache dependencies
+        id: cache-dependencies-backend
+        uses: actions/cache@v3
+        with:
+          key: ${{ runner.os }}-${{ hashFiles('backend/package.json') }}
+          path: |
+            backend/node_modules
+            ~/.npm
+      - name: Install dependencies
+        if: ${{ steps.cache-dependencies-backend.outputs.cache-hit == false }}
+        run: npm i --legacy-peer-deps
+        working-directory: backend
+      - name: Build the app
+        run: npm run build
+        working-directory: backend
+      - name: Save the build
+        uses: actions/upload-artifact@v3
+        with:
+          name: backend-build
+          path: backend/build/
+  deploy-frontend:
     runs-on: ubuntu-latest
     needs:
-      - build
+      - build-frontend
     steps:
       - name: Restore the build
         uses: actions/download-artifact@v3
         with:
-          name: build
-          path: build/
+          name: frontend-build
+          path: frontend/build/
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./build
+          publish_dir: ./frontend/build
           cname: brewmymac.sh
+  deploy-backend:
+    runs-on: ubuntu-latest
+    needs:
+      - build-backend
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v1
+        with:
+          cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
+      - name: Terraform Init
+        run: terraform init -lock-timeout=900s
+        working-directory: terraform
+        env:
+          TF_IN_AUTOMATION: true
+          TF_WORKSPACE: main
+          TF_VAR_app_id: ${{ secrets.TF_VAR_APP_ID }}
+          TF_VAR_client_secret: ${{ secrets.ARM_CLIENT_SECRET }}
+          TF_VAR_tenant_id: ${{ secrets.ARM_TENANT_ID }}
+          ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
+          ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
+          ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
+          ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
+      - name: Restore the build
+        uses: actions/download-artifact@v3
+        with:
+          name: backend-build
+          path: backend/build/
+      - name: Terraform Apply
+        run: terraform apply -auto-approve -input=false -lock-timeout=900s
+        working-directory: terraform
+        env:
+          TF_IN_AUTOMATION: true
+          TF_WORKSPACE: main
+          TF_VAR_app_id: ${{ secrets.TF_VAR_APP_ID }}
+          TF_VAR_client_secret: ${{ secrets.ARM_CLIENT_SECRET }}
+          TF_VAR_tenant_id: ${{ secrets.ARM_TENANT_ID }}
+          ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
+          ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
+          ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
+          ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
   check:
     runs-on: ubuntu-latest
     needs:
-      - deploy
+      - deploy-frontend
     steps:
       - name: Wait for 1 minute
         run: sleep 60
@@ -62,12 +134,12 @@ jobs:
       - name: Check the deployment
         uses: lakuapik/gh-actions-http-status@v1
         with:
-          url: https://brewmymac.sh
-          expected_status: '[200]'
+          sites: '["https://brewmymac.sh"]'
+          expected: '[200]'
   sentry:
     runs-on: ubuntu-latest
     needs:
-      - build
+      - build-frontend
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -76,32 +148,35 @@ jobs:
         with:
           node-version: 18
       - name: Cache dependencies
-        id: cache-dependencies
+        id: cache-dependencies-frontend
         uses: actions/cache@v3
         with:
-          key: ${{ runner.os }}-${{ hashFiles('**/package.json') }}
+          key: ${{ runner.os }}-${{ hashFiles('frontend/package.json') }}
           path: |
-            node_modules
+            frontend/node_modules
             ~/.npm
       - name: Install dependencies
-        if: ${{ steps.cache-dependencies.outputs.cache-hit == false }}
+        if: ${{ steps.cache-dependencies-frontend.outputs.cache-hit == false }}
         run: npm i --legacy-peer-deps
+        working-directory: frontend
       - name: Restore the build
         uses: actions/download-artifact@v3
         with:
-          name: build
-          path: build/
-      - name: Retrieve release version information
-        uses: martinbeentjes/release-version-action@main
-        id: release-version
+          name: frontend-build
+          path: frontend/build/
+      - name: Retrieve package version information
+        id: package-version
+        uses: martinbeentjes/npm-get-version-action@main
+        with:
+          path: frontend
       - name: Create a new Sentry release
-        run: ./node_modules/.bin/sentry-cli releases new ${{ steps.release-version.outputs.current-version }}
+        run: ./frontend/node_modules/.bin/sentry-cli releases new ${{ steps.package-version.outputs.current-version }}
         env:
           SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
           SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
           SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
       - name: Upload source maps to Sentry
-        run: ./node_modules/.bin/sentry-cli releases files ${{ steps.release-version.outputs.current-version }} upload-sourcemaps build --rewrite
+        run: ./frontend/node_modules/.bin/sentry-cli releases files ${{ steps.package-version.outputs.current-version }} upload-sourcemaps frontend/build --rewrite
         env:
           SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
           SENTRY_ORG: ${{ secrets.SENTRY_ORG }}

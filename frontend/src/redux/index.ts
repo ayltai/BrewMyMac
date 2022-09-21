@@ -2,7 +2,7 @@ import { combineReducers, configureStore, } from '@reduxjs/toolkit';
 import { FLUSH, PAUSE, PERSIST, persistReducer, persistStore, PURGE, REGISTER, REHYDRATE, } from 'redux-persist';
 import sessionStorage from 'redux-persist/lib/storage/session';
 
-import { appStoreApi, homebrewApi, sessionApi, tweakApi, } from '../apis';
+import { appStoreApi, homebrewApi, tweakApi, } from '../apis';
 
 import { sessionReducer, } from './sessionSlice';
 
@@ -12,7 +12,6 @@ export const store = configureStore({
         blacklist : [
             appStoreApi.reducerPath,
             homebrewApi.reducerPath,
-            sessionApi.reducerPath,
             tweakApi.reducerPath,
         ],
         storage   : sessionStorage,
@@ -20,7 +19,6 @@ export const store = configureStore({
         session                     : sessionReducer,
         [ appStoreApi.reducerPath ] : appStoreApi.reducer,
         [ homebrewApi.reducerPath ] : homebrewApi.reducer,
-        [ sessionApi.reducerPath  ] : sessionApi.reducer,
         [ tweakApi.reducerPath    ] : tweakApi.reducer,
     })),
     middleware : getDefaultMiddleware => getDefaultMiddleware({
@@ -34,7 +32,7 @@ export const store = configureStore({
                 REHYDRATE,
             ],
         },
-    }).concat(appStoreApi.middleware, homebrewApi.middleware, sessionApi.middleware, tweakApi.middleware),
+    }).concat(appStoreApi.middleware, homebrewApi.middleware, tweakApi.middleware),
 });
 
 export const persistor = persistStore(store);

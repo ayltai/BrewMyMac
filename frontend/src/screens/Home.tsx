@@ -4,11 +4,10 @@ import { Badge, Box, Grid, IconButton, styled, ToggleButton, Tooltip, } from '@m
 import { render, } from 'ejs';
 import React, { useEffect, useState, } from 'react';
 import { useTranslation, } from 'react-i18next';
-import { v4, } from 'uuid';
 
 import { ActionBar, FilteredItemGrid, Loading, PopUpFooter, SearchBox, } from '../components';
+import { BREWMYMAC_API_ENDPOINT, } from '../constants';
 import { useAppSelector, } from '../hooks';
-import type { Session, } from '../models';
 
 import { SessionDetail, } from './SessionDetail';
 
@@ -34,7 +33,7 @@ export const Home = () => {
     const [ filter,            setFilter,            ] = useState<string>('');
     const [ inProgress,        setInProgress,        ] = useState<boolean>(false);
     const [ showSelected,      setShowSelected,      ] = useState<boolean>(false);
-    const [ savedSession,      setSavedSession,      ] = useState<Session | undefined>();
+    const [ savedSessionId,    setSavedSessionId,    ] = useState<string | undefined>();
     const [ showSessionDetail, setShowSessionDetail, ] = useState<boolean>(false);
 
     const { t, } = useTranslation();
@@ -46,7 +45,7 @@ export const Home = () => {
     const handleToggleShowSelected = () => setShowSelected(!showSelected);
 
     const handleInstall = async () => {
-        setSavedSession(undefined);
+        setSavedSessionId(undefined);
         setShowSessionDetail(true);
 
         const file     = await fetch('/data/install.sh.ejs');
@@ -56,23 +55,20 @@ export const Home = () => {
             items : session.items,
         });
 
-        const response = await fetch('https://x8ki-letl-twmt.n7.xano.io/api:bt-93slL/sessions', {
+        const response = await fetch(`${BREWMYMAC_API_ENDPOINT}/api/sessions`, {
             method  : 'POST',
             headers : {
-                'Content-Type' : 'application/json',
+                'Content-Type' : 'text/plain',
             },
-            body    : JSON.stringify({
-                sessionId : v4(),
-                script,
-            }),
+            body    : script,
         });
 
-        setSavedSession(await response.json());
+        setSavedSessionId(await response.text());
     };
 
     const handleCloseSession = () => {
         setShowSessionDetail(false);
-        setSavedSession(undefined);
+        setSavedSessionId(undefined);
     };
 
     useEffect(() => {
@@ -131,13 +127,13 @@ export const Home = () => {
                         filter={filter}
                         onStatusChange={handleStatusChange} />
                 </Grid>
-                {showSessionDetail && savedSession && (
+                {showSessionDetail && savedSessionId && (
                     <SessionDetail
-                        session={savedSession}
+                        sessionId={savedSessionId}
                         items={session.items}
                         onClose={handleCloseSession} />
                 )}
-                {showSessionDetail && !savedSession && <Loading />}
+                {showSessionDetail && !savedSessionId && <Loading />}
             </FlexBox>
         </>
     );

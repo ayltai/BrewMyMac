@@ -1,0 +1,6 @@
+*.js.map
+*.ts
+*.test.ts
+.git*
+local.settings.json
+tsconfig.json
