@@ -14,7 +14,7 @@ exports[`<ItemList /> renders correctly 1`] = `
           <li
             class="MuiListSubheader-root MuiListSubheader-gutters MuiListSubheader-sticky css-uob957-MuiListSubheader-root"
           >
-            Tweak
+            Tweak (1)
           </li>
           <li
             class="MuiListItem-root MuiListItem-dense MuiListItem-gutters MuiListItem-padding css-1vnt5zy-MuiListItem-root"

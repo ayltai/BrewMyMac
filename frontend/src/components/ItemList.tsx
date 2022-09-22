@@ -37,7 +37,7 @@ export const ItemList = ({
                 {SECTIONS.filter(section => sections[SECTIONS.indexOf(section)].length > 0).map(section => (
                     <li key={section}>
                         <ul>
-                            <ListSubheader>{section}</ListSubheader>
+                            <ListSubheader>{`${section} (${sections[SECTIONS.indexOf(section)].length})`}</ListSubheader>
                             {sections[SECTIONS.indexOf(section)].map(item => (
                                 <ListItem key={item.id}>
                                     <ListItemText primary={item.name} />
