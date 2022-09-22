@@ -69,7 +69,7 @@ export const SessionDetail = ({
             </Typography>
             <CopyableTextField
                 fullWidth
-                value={`/bin/bash -c "$(curl -fsSL ${BREWMYMAC_API_ENDPOINT}/api/sessions?sessionId=${sessionId}"`} />
+                value={`/bin/bash -c "$(curl -fsSL '${BREWMYMAC_API_ENDPOINT}/api/sessions?sessionId=${sessionId}')"`} />
         </PopUpDialog>
     );
 };
