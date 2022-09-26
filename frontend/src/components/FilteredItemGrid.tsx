@@ -111,39 +111,7 @@ export const FilteredItemGrid = ({
 
             setFilteredItems(search());
         }
-    }, [ filter, selectedOnly, ]);
-
-    useEffect(() => {
-        if (formulaStatus === QueryStatus.fulfilled && formulaData) {
-            searchEngine.current.addAll(formulaData);
-
-            if (filter.length >= MIN_SEARCH_LENGTH) setFilteredItems(search());
-        }
-    }, [ formulaData, formulaStatus, ]);
-
-    useEffect(() => {
-        if (caskStatus === QueryStatus.fulfilled && caskData) {
-            searchEngine.current.addAll(caskData);
-
-            if (filter.length >= MIN_SEARCH_LENGTH) setFilteredItems(search());
-        }
-    }, [ caskData, caskStatus, ]);
-
-    useEffect(() => {
-        if (searchStatus === QueryStatus.fulfilled && searchData) {
-            searchEngine.current.addAll(searchData);
-
-            if (filter.length >= MIN_SEARCH_LENGTH) setFilteredItems(search());
-        }
-    }, [ searchData, searchStatus, ]);
-
-    useEffect(() => {
-        if (tweakStatus === QueryStatus.fulfilled && tweakData) {
-            searchEngine.current.addAll(tweakData);
-
-            if (filter.length >= MIN_SEARCH_LENGTH) setFilteredItems(search());
-        }
-    }, [ tweakData, tweakStatus, ]);
+    }, [ caskData, filter, formulaData, searchData, selectedOnly, tweakData, ]);
 
     useEffect(() => {
         if (onStatusChange) return onStatusChange(formulaStatus === QueryStatus.pending || caskStatus === QueryStatus.pending || searchStatus === QueryStatus.pending || tweakStatus === QueryStatus.pending);
