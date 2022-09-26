@@ -20,7 +20,9 @@ export const ItemDetail = ({
 
     const handleChange = (event : React.ChangeEvent<HTMLInputElement>) => onChange && onChange(event.target.value);
 
-    useEffect(() => mixpanel.track('Page View - Item Detail'), []);
+    useEffect(() => {
+        mixpanel.track('Page View - Item Detail');
+    }, []);
 
     return (
         <PopUpDialog

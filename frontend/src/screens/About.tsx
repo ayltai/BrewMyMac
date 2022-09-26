@@ -22,7 +22,9 @@ export const About = ({
         window.open(t('url_linkedin'), '_blank');
     };
 
-    useEffect(() => mixpanel.track('Page View - About'), []);
+    useEffect(() => {
+        mixpanel.track('Page View - About');
+    }, []);
 
     return (
         <PopUpDialog

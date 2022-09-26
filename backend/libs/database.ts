@@ -1,7 +1,13 @@
 import { connect, model, Schema, } from 'mongoose';
 import { v4, } from 'uuid';
 
-const SessionSchema = new Schema({
+type Session = {
+    sessionId    : string,
+    creationDate : Date,
+    script       : string,
+};
+
+const SessionSchema = new Schema<Session>({
     sessionId    : {
         type    : String,
         default : v4,
@@ -15,7 +21,7 @@ const SessionSchema = new Schema({
     script       : String,
 });
 
-const SessionModel = model('Session', SessionSchema, 'sessions');
+const SessionModel = model<Session>('Session', SessionSchema, 'sessions');
 
 let db : typeof import('mongoose') | null = null;
 
