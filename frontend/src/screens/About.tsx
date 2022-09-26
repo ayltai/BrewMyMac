@@ -17,18 +17,12 @@ export const About = ({
     const { t, } = useTranslation();
 
     const handleLinkedInClick = () => {
-        mixpanel.track('Referral', {
-            name : 'LinkedIn',
-        });
+        mixpanel.track('Referral - LinkedIn');
 
         window.open(t('url_linkedin'), '_blank');
     };
 
-    useEffect(() => {
-        mixpanel.track('Page View', {
-            name : 'About',
-        });
-    }, []);
+    useEffect(() => mixpanel.track('Page View - About'), []);
 
     return (
         <PopUpDialog

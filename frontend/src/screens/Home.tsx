@@ -71,11 +71,7 @@ export const Home = () => {
         setSavedSessionId(undefined);
     };
 
-    useEffect(() => {
-        mixpanel.track('Page View', {
-            name : 'Home',
-        });
-    }, []);
+    useEffect(() => mixpanel.track('Page View - Home'), []);
 
     return (
         <>

@@ -61,7 +61,7 @@ export const SearchBox = ({
 }) => {
     const [ keyword, setKeyword, ] = useState<string>(initialKeyword || '');
 
-    const debouncedKeyword = useDebounce(keyword, 250);
+    const debouncedKeyword = useDebounce(keyword, 400);
 
     const { t, } = useTranslation();
 

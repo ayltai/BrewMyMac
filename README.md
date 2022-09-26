@@ -23,7 +23,7 @@ Try it: [https://brewmymac.sh](https://brewmymac.sh)
 
 ## Supported macOS tweaks
 
-* [macOS tweaks](https://github.com/ayltai/ansible-macOS-tweaks): A collection of nearly 50 macOS customizations
+* [macOS tweaks](https://github.com/ayltai/ansible-macOS-tweaks): A collection of over 50 macOS customizations
 
 ## Frontend
 

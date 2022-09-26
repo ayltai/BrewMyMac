@@ -49,10 +49,7 @@ export const SelectableItem = ({
         } else {
             dispatch(addItem(item));
 
-            mixpanel.track('Add Item', {
-                id     : item.id,
-                source : item.source,
-            });
+            mixpanel.track(`Add Item - ${item.id} (${item.source})`);
         }
     };
 

@@ -23,7 +23,7 @@ export const ActionBar = ({
     const handleHomepageClick = () => window.open('/', '_self');
 
     const handleGitHubClick = () => {
-        mixpanel.track_links('GtiHub', 'Referral');
+        mixpanel.track('Referral - GitHub');
 
         window.open('https://github.com/ayltai/BrewMyMac', '_blank');
     };

@@ -19,11 +19,7 @@ export const SessionDetail = ({
 }) => {
     const { t, } = useTranslation();
 
-    useEffect(() => {
-        mixpanel.track('Page View', {
-            name : 'Session Detail',
-        });
-    }, []);
+    useEffect(() => mixpanel.track('Page View - Session Detail'), []);
 
     return (
         <PopUpDialog
