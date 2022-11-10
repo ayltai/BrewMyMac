@@ -1,6 +1,6 @@
 import { Search as SearchIcon, } from '@mui/icons-material';
 import { alpha, CircularProgress, InputBase, styled, } from '@mui/material';
-import React, { ChangeEvent, useEffect, useState, } from 'react';
+import React, { ChangeEvent, useCallback, useEffect, useState, } from 'react';
 import { useTranslation, } from 'react-i18next';
 import { useDebounce, } from 'usehooks-ts';
 
@@ -65,7 +65,7 @@ export const SearchBox = ({
 
     const { t, } = useTranslation();
 
-    const handleChange = (event : ChangeEvent<HTMLInputElement>) => setKeyword(event.target.value);
+    const handleChange = useCallback((event : ChangeEvent<HTMLInputElement>) => setKeyword(event.target.value), [ setKeyword, ]);
 
     useEffect(() => {
         if (onSearch) onSearch(debouncedKeyword);
