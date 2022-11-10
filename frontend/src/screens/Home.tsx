@@ -2,7 +2,7 @@ import mixpanel from 'mixpanel-browser';
 import { InstallDesktop, } from '@mui/icons-material';
 import { Badge, Box, Grid, IconButton, styled, ToggleButton, Tooltip, } from '@mui/material';
 import { render, } from 'ejs';
-import React, { useEffect, useState, } from 'react';
+import React, { useCallback, useEffect, useState, } from 'react';
 import { useTranslation, } from 'react-i18next';
 
 import { ActionBar, FilteredItemGrid, Loading, PopUpFooter, SearchBox, } from '../components';
@@ -38,9 +38,9 @@ export const Home = () => {
 
     const { t, } = useTranslation();
 
-    const handleStatusChange = (isInProgress : boolean) => setInProgress(isInProgress);
+    const handleStatusChange = useCallback(() => (isInProgress : boolean) => setInProgress(isInProgress), [ setInProgress, ]);
 
-    const handleSearch = (keyword? : string) => setFilter(keyword || '');
+    const handleSearch = useCallback(() => (keyword? : string) => setFilter(keyword || ''), [ setFilter, ]);
 
     const handleToggleShowSelected = () => setShowSelected(!showSelected);
 
@@ -66,10 +66,10 @@ export const Home = () => {
         setSavedSessionId(await response.text());
     };
 
-    const handleCloseSession = () => {
+    const handleCloseSession = useCallback(() => {
         setShowSessionDetail(false);
         setSavedSessionId(undefined);
-    };
+    }, [ setSavedSessionId, setShowSessionDetail, ]);
 
     useEffect(() => {
         mixpanel.track('Page View - Home');

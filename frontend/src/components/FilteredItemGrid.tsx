@@ -1,7 +1,7 @@
 import { Grid, Typography, } from '@mui/material';
 import { QueryStatus, } from '@reduxjs/toolkit/query';
 import MiniSearch from 'minisearch';
-import React, { useEffect, useRef, useState, } from 'react';
+import React, { useEffect, useMemo, useRef, useState, } from 'react';
 import { useTranslation, } from 'react-i18next';
 
 import { useCaskQuery, useFormulaQuery, useGetTweaksQuery, useSearchQuery, } from '../apis';
@@ -91,8 +91,8 @@ export const FilteredItemGrid = ({
         source      : result.source,
     }));
 
-    const empty = <Message>{t('label_no_results')}</Message>;
-    const hint  = <Message>{t('label_start_searching')}</Message>;
+    const empty = useMemo(() => <Message>{t('label_no_results')}</Message>, []);
+    const hint  = useMemo(() => <Message>{t('label_start_searching')}</Message>, []);
 
     useEffect(() => {
         searchEngine.current.removeAll();
