@@ -38,9 +38,9 @@ export const Home = () => {
 
     const { t, } = useTranslation();
 
-    const handleStatusChange = useCallback(() => (isInProgress : boolean) => setInProgress(isInProgress), [ setInProgress, ]);
+    const handleStatusChange = useCallback((isInProgress : boolean) => setInProgress(isInProgress), [ setInProgress, ]);
 
-    const handleSearch = useCallback(() => (keyword? : string) => setFilter(keyword || ''), [ setFilter, ]);
+    const handleSearch = useCallback((keyword? : string) => setFilter(keyword || ''), [ setFilter, ]);
 
     const handleToggleShowSelected = () => setShowSelected(!showSelected);
 
