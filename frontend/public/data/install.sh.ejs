@@ -50,6 +50,10 @@ fi
 echo -n "❓ Press Command+C to quit now if you have not already signed in to App Store. Otherwise, press any key to continue "
 for _ in { 1.. 10 }; do read -rs -n1 -t1 || printf "."; done
 
+echo '⏳ Installing mas from Homebrew ...'
+brew install mas
+echo '✅ mas is installed'
+
 echo '⏳ Installing App Store apps ...'
   <% items.forEach(item => { %>
     <% if (item.source === 'App Store') { %>
