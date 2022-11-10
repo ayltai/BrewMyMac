@@ -1,7 +1,7 @@
 import mixpanel from 'mixpanel-browser';
 import { Box, Chip, TextField, Typography, } from '@mui/material';
 import Markdown from 'markdown-to-jsx';
-import React, { useEffect, } from 'react';
+import React, { useCallback, useEffect, } from 'react';
 import { useTranslation, } from 'react-i18next';
 
 import { ExternalLink, PopUpDialog, } from '../components';
@@ -18,7 +18,7 @@ export const ItemDetail = ({
 }) => {
     const { t, } = useTranslation();
 
-    const handleChange = (event : React.ChangeEvent<HTMLInputElement>) => onChange && onChange(event.target.value);
+    const handleChange = useCallback((event : React.ChangeEvent<HTMLInputElement>) => onChange && onChange(event.target.value), [ onChange, ]);
 
     useEffect(() => {
         mixpanel.track('Page View - Item Detail');

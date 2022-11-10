@@ -2,7 +2,7 @@ import { Backdrop, Button, createTheme, CssBaseline, ThemeProvider, Typography, 
 import * as Sentry from '@sentry/react';
 import { BrowserTracing, } from '@sentry/tracing';
 import mixpanel from 'mixpanel-browser';
-import React, { useMemo, } from 'react';
+import React, { useCallback, useMemo, } from 'react';
 import { useTranslation, } from 'react-i18next';
 import { Provider, } from 'react-redux';
 import { PersistGate, } from 'redux-persist/integration/react';
@@ -45,11 +45,11 @@ const ErrorFallback = ({
 
     const { t, } = useTranslation();
 
-    const handleReset = () => {
+    const handleReset = useCallback(() => {
         dispatch(reset());
 
         resetError();
-    };
+    }, [ dispatch, reset, resetError, ]);
 
     return (
         <Backdrop open>

@@ -1,6 +1,6 @@
 import mixpanel from 'mixpanel-browser';
 import { Box, styled, Typography, } from '@mui/material';
-import React, { useEffect, } from 'react';
+import React, { useCallback, useEffect, } from 'react';
 import { useTranslation, } from 'react-i18next';
 
 import { ExternalLink, PopUpDialog, } from '../components';
@@ -16,11 +16,11 @@ export const About = ({
 }) => {
     const { t, } = useTranslation();
 
-    const handleLinkedInClick = () => {
+    const handleLinkedInClick = useCallback(() => {
         mixpanel.track('Referral - LinkedIn');
 
-        window.open(t('url_linkedin'), '_blank');
-    };
+        window.open(t<string>('url_linkedin'), '_blank');
+    }, []);
 
     useEffect(() => {
         mixpanel.track('Page View - About');
