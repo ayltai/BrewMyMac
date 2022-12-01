@@ -44,7 +44,7 @@
         "ejs"                     : "^3.1.8",
         "i18next"                 : "^22.0.4",
         "markdown-to-jsx"         : "^7.1.7",
-        "minisearch"              : "^5.0.0",
+        "minisearch"              : "^6.0.0",
         "mixpanel-browser"        : "^2.45.0",
         "path-browserify"         : "^1.0.1",
         "react"                   : "^18.2.0",
