@@ -1,0 +1,42 @@
+{
+    "compilerOptions" : {
+        "target"                           : "es5",
+        "lib"                              : [
+            "dom",
+            "dom.iterable",
+            "esnext"
+        ],
+        "module"                           : "esnext",
+        "moduleResolution"                 : "node",
+        "esModuleInterop"                  : true,
+        "isolatedModules"                  : true,
+        "allowJs"                          : true,
+        "strict"                           : true,
+        "strictNullChecks"                 : true,
+        "strictFunctionTypes"              : true,
+        "noImplicitAny"                    : true,
+        "noImplicitThis"                   : true,
+        "skipLibCheck"                     : true,
+        "forceConsistentCasingInFileNames" : true,
+        "noEmit"                           : true,
+        "sourceMap"                        : true,
+        "jsx"                              : "preserve",
+        "jsxImportSource"                  : "@emotion/react",
+        "resolveJsonModule"                : true,
+        "incremental"                      : true,
+        "plugins"                          : [
+            {
+                "name" : "next"
+            }
+        ]
+    },
+    "include"         : [
+        "next-env.d.ts",
+        "**/*.ts",
+        "**/*.tsx",
+        ".next/types/**/*.ts"
+    ],
+    "exclude"         : [
+        "node_modules"
+    ]
+}

@@ -1,6 +1,36 @@
 # macOS
 .DS_Store
 
+# Windows
+Thumbs.db
+[Dd]esktop.ini
+
 # JetBrains
 .idea/
 *.iml
+
+# Visual Studio Code
+.vscode/
+
+# Node.js
+node_modules/
+package-lock.json
+pnpm-lock.yaml
+
+# Vercel
+.vercel
+
+# Testing
+coverage/
+
+# Build
+.next/
+build/
+dist/
+out/
+
+# Generated
+*.log
+
+# Secrets
+.env.local

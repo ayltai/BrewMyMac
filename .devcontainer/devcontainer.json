@@ -1,17 +1,20 @@
 {
-    "name"       : "Node.js & TypeScript",
-    "build"      : {
-        "dockerfile": "Dockerfile",
-        "args": {
-            "VARIANT": "18"
+    "name"           : "Node.js & TypeScript",
+    "build"          : {
+        "dockerfile" : "Dockerfile",
+        "args"       : {
+            "VARIANT" : "20"
         }
     },
-    "settings"   : {
-        "terminal.integrated.shell.linux" : "/bin/bash"
+    "customizations" : {
+        "vscode" : {
+            "settings"   : {
+                "terminal.integrated.shell.linux" : "/bin/bash"
+            },
+            "extensions" : [
+                "GitHub.copilot"
+            ]
+        }
     },
-    "extensions" : [
-        "dbaeumer.vscode-eslint",
-        "GitHub.copilot"
-    ],
-    "remoteUser" : "node"
+    "remoteUser"     : "node"
 }

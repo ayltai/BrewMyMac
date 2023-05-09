@@ -1,0 +1,11 @@
+{
+    "app.name"                    : "BrewMyMac",
+    "app.locales"                 : {
+        "en" : "English"
+    },
+    "action.cta"                  : "Try it now",
+    "action.get-started"          : "Get started",
+    "section.landing.title"       : "Brew My Mac",
+    "section.landing.description" : "The coolest way to install apps and customize your Mac",
+    "section.landing.get-started" : "Looking for a specific app or customization?"
+}
