@@ -1,5 +1,6 @@
 export { default as Branding, } from './Branding';
 export { default as CallToAction, } from './CallToAction';
+export { default as FilteredSearchBox, } from './FilteredSearchBox';
 export { default as LanguageChoice, } from './LanguageChoice';
 export { default as Screen, } from './Screen';
 export { default as Section, } from './Section';

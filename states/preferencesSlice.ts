@@ -24,3 +24,5 @@ export const preferencesSlice = createSlice({
 });
 
 export const { setLocale, } = preferencesSlice.actions;
+
+export const preferencesReducer = preferencesSlice.reducer;

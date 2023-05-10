@@ -3,9 +3,12 @@
     "app.locales"                 : {
         "en" : "English"
     },
+    "app.filters"                 : {
+        "@packages" : "Top packages",
+        "@tweaks"   : "Top tweaks"
+    },
     "action.cta"                  : "Try it now",
-    "action.get-started"          : "Get started",
-    "section.landing.title"       : "Brew My Mac",
-    "section.landing.description" : "The coolest way to install apps and customize your Mac",
-    "section.landing.get-started" : "Looking for a specific app or customization?"
+    "hint.search"                 : "Search for a package or tweak",
+    "section.landing.title"       : "Install apps and tweak your Mac like a pro",
+    "section.landing.description" : "A single command-line tool to install packages and customize your Mac"
 }

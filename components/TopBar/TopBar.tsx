@@ -74,6 +74,7 @@ const TopBar : FC<TopBarProps> = ({
                                     <Button
                                         size='large'
                                         color='inherit'
+                                        variant='text'
                                         onClick={handleClick}>
                                         {branding}
                                     </Button>

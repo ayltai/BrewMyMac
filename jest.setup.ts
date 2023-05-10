@@ -9,18 +9,27 @@ jest.mock('mixpanel-browser', () => ({
     track : () => {},
 }));
 
-jest.mock('react-i18next', () => ({
+jest.mock('next-i18next', () => ({
     useTranslation : () => ({
         t    : (key : string, options? : {
             returnObjects? : boolean,
-        }) => key,
+        }) => {
+            if (options?.returnObjects) {
+                if (key === 'app.filters') return {
+                    '@packages' : 'Top packages',
+                    '@tweaks'   : 'Top tweaks',
+                };
+            }
+
+            return key;
+        },
         i18n : {
             changeLanguage : () => new Promise(() => {}),
         },
     }),
 }));
 
-jest.mock('@sentry/react', () => ({
+jest.mock('@sentry/nextjs', () => ({
     init             : () => {},
     captureException : () => {},
 }));

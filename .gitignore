@@ -17,6 +17,10 @@ node_modules/
 package-lock.json
 pnpm-lock.yaml
 
+# Next.js
+.next/
+.swc/
+
 # Vercel
 .vercel
 
@@ -24,10 +28,7 @@ pnpm-lock.yaml
 coverage/
 
 # Build
-.next/
 build/
-dist/
-out/
 
 # Generated
 *.log

@@ -3,8 +3,8 @@ import { CssBaseline, } from '@mui/material';
 import { createTheme, ThemeProvider, } from '@mui/material/styles';
 import Head from 'next/head';
 import { AppProps, } from 'next/app';
-import { appWithTranslation, } from 'next-i18next'
-import React, { useMemo, } from 'react';
+import { appWithTranslation, } from 'next-i18next';
+import React from 'react';
 import { Provider, } from 'react-redux';
 import { PersistGate, } from 'redux-persist/integration/react';
 
@@ -27,7 +27,7 @@ const App = ({
     const theme = createTheme({
         palette : {
             ...palette,
-            mode : 'dark',
+            mode : 'light',
         },
         components,
         typography,
