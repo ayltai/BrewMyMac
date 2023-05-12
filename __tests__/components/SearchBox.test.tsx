@@ -1,10 +1,9 @@
 import React from 'react';
 
-import { fireEvent, render, waitFor, } from '../../utils/test-utils';
+import { default as SearchBox, } from '../../src/components/SearchBox';
+import { fireEvent, render, waitFor, } from '../../src/utils/test-utils';
 
-import { default as SearchBox, } from '../../components/SearchBox';
-
-describe('<SearchBox />', () => {
+describe('SearchBox', () => {
     it('triggers onSearch when the input text has changed', async () => {
         const handleSearch = jest.fn();
 

@@ -7,17 +7,12 @@ const createJestConfig = nextJest({
 module.exports = createJestConfig({
     collectCoverage        : true,
     collectCoverageFrom    : [
-        '**/*.{js,jsx,ts,tsx}',
-        '!**/*.d.ts',
-        '!<rootDir>/.next/**',
-        '!<rootDir>/coverage/**',
-        '!<rootDir>/.eslintrc.js',
-        '!<rootDir>/*.config.{js,ts}',
-        '!<rootDir>/utils/test-utils.tsx',
+        '<rootDir>/src/**/*.{js,jsx,ts,tsx}',
+        '!<rootDir>/src/utils/test-utils.tsx',
     ],
     testPathIgnorePatterns : [
         '<rootDir>/.next/',
-        '<rootDir>/utils/test-utils.tsx',
+        '<rootDir>/src/utils/test-utils.tsx',
     ],
     setupFilesAfterEnv     : [
         '<rootDir>/jest.setup.ts',

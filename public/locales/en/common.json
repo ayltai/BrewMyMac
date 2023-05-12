@@ -1,14 +1,31 @@
 {
-    "app.name"                    : "BrewMyMac",
-    "app.locales"                 : {
+    "app.name"                               : "BrewMyMac",
+    "app.locales"                            : {
         "en" : "English"
     },
-    "app.filters"                 : {
+    "app.filters"                            : {
         "@packages" : "Top packages",
         "@tweaks"   : "Top tweaks"
     },
-    "action.cta"                  : "Try it now",
-    "hint.search"                 : "Search for a package or tweak",
-    "section.landing.title"       : "Install apps and tweak your Mac like a pro",
-    "section.landing.description" : "A single command-line tool to install packages and customize your Mac"
+    "action.close"                           : "Close",
+    "action.cta"                             : "Try it now",
+    "action.customize"                       : "Customize",
+    "action.learn-more"                      : "Learn more",
+    "hint.search"                            : "Search for a package or tweak",
+    "hint.type-more"                         : "Type more to start searching",
+    "hint.no-results"                        : "No results found for your search",
+    "section.landing.title"                  : "Install apps and tweak your Mac like a pro",
+    "section.landing.description"            : "A single command-line tool to install packages and customize your Mac",
+    "section.overview.name"                  : "Overview",
+    "section.overview.title"                 : "What is BrewMyMac?",
+    "section.overview.description"           : "BrewMyMac lets you find and install packages and tweaks for your Mac. It's a single command-line tool for installing packages and customizing your Mac.",
+    "section.overview.feature.1.title"       : "One-stop shop",
+    "section.overview.feature.1.description" : "Find and install apps and packages from a single place. No more searching on Homebrew or Apple App Store.",
+    "section.overview.feature.2.title"       : "Automated",
+    "section.overview.feature.2.description" : "Use the generated one-line command to install everything at once in an automated manner.",
+    "section.overview.feature.3.title"       : "Repeatable",
+    "section.overview.feature.3.description" : "The generated command is saved on our server and can be shared with others. You can also use it to reinstall everything on a new Mac.",
+    "item.author"                            : "By {{author}}",
+    "item.parameter"                         : "Value",
+    "item.homepage"                          : "Visit the official website"
 }

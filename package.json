@@ -45,6 +45,7 @@
         "@reduxjs/toolkit"    : "^1.9.5",
         "@sentry/nextjs"      : "^7.51.2",
         "i18next"             : "^22.4.15",
+        "markdown-to-jsx"     : "^7.2.0",
         "minisearch"          : "^6.0.1",
         "mixpanel-browser"    : "^2.47.0",
         "nanoid"              : "^4.0.2",
