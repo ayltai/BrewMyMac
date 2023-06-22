@@ -11,7 +11,7 @@
         "update"    : "npx npm-check-updates"
     },
     "dependencies"    : {
-        "mongoose" : "^6.7.2",
+        "mongoose" : "^7.3.1",
         "uuid"     : "^9.0.0"
     },
     "devDependencies" : {
